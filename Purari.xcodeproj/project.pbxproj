@@ -13,6 +13,9 @@
 		A130DF2A27D0AC6D0023A4BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A130DF2827D0AC6D0023A4BE /* Main.storyboard */; };
 		A130DF2C27D0AC6E0023A4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A130DF2B27D0AC6E0023A4BE /* Assets.xcassets */; };
 		A130DF2F27D0AC6E0023A4BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A130DF2D27D0AC6E0023A4BE /* LaunchScreen.storyboard */; };
+		A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */; };
+		A130DF3A27D31F310023A4BE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A130DF3927D31F310023A4BE /* Realm */; };
+		A130DF3C27D31F310023A4BE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A130DF3B27D31F310023A4BE /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,7 @@
 		A130DF2B27D0AC6E0023A4BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A130DF2E27D0AC6E0023A4BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A130DF3027D0AC6E0023A4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSelectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A130DF3C27D31F310023A4BE /* RealmSwift in Frameworks */,
+				A130DF3A27D31F310023A4BE /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,11 +64,12 @@
 			children = (
 				A130DF2227D0AC6D0023A4BE /* AppDelegate.swift */,
 				A130DF2427D0AC6D0023A4BE /* SceneDelegate.swift */,
-				A130DF2627D0AC6D0023A4BE /* ViewController.swift */,
 				A130DF2827D0AC6D0023A4BE /* Main.storyboard */,
 				A130DF2B27D0AC6E0023A4BE /* Assets.xcassets */,
 				A130DF2D27D0AC6E0023A4BE /* LaunchScreen.storyboard */,
 				A130DF3027D0AC6E0023A4BE /* Info.plist */,
+				A130DF2627D0AC6D0023A4BE /* ViewController.swift */,
+				A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */,
 			);
 			path = Purari;
 			sourceTree = "<group>";
@@ -83,6 +90,10 @@
 			dependencies = (
 			);
 			name = Purari;
+			packageProductDependencies = (
+				A130DF3927D31F310023A4BE /* Realm */,
+				A130DF3B27D31F310023A4BE /* RealmSwift */,
+			);
 			productName = Purari;
 			productReference = A130DF1F27D0AC6D0023A4BE /* Purari.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = A130DF1627D0AC6D0023A4BE;
+			packageReferences = (
+				A130DF3827D31F310023A4BE /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = A130DF2027D0AC6D0023A4BE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,6 +154,7 @@
 			files = (
 				A130DF2727D0AC6D0023A4BE /* ViewController.swift in Sources */,
 				A130DF2327D0AC6D0023A4BE /* AppDelegate.swift in Sources */,
+				A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */,
 				A130DF2527D0AC6D0023A4BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +307,7 @@
 				DEVELOPMENT_TEAM = 743J7J89D4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Purari/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報を取得します。OK?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -302,7 +318,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litech.Purari;
+				PRODUCT_BUNDLE_IDENTIFIER = purariApp.emily.japan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -320,6 +336,7 @@
 				DEVELOPMENT_TEAM = 743J7J89D4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Purari/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報を取得します。OK?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,7 +347,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litech.Purari;
+				PRODUCT_BUNDLE_IDENTIFIER = purariApp.emily.japan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -360,6 +377,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A130DF3827D31F310023A4BE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A130DF3927D31F310023A4BE /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A130DF3827D31F310023A4BE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		A130DF3B27D31F310023A4BE /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A130DF3827D31F310023A4BE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A130DF1727D0AC6D0023A4BE /* Project object */;
 }
