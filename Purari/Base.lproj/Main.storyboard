@@ -99,7 +99,7 @@
                                                     <backgroundConfiguration key="background" image="dinner"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="Dinner:" destination="Z49-cI-N2N" eventType="touchUpInside" id="adv-ug-66e"/>
+                                                    <action selector="DinnerButtonTapped:" destination="Z49-cI-N2N" eventType="touchUpInside" id="Z7N-OM-ko3"/>
                                                 </connections>
                                             </button>
                                         </subviews>

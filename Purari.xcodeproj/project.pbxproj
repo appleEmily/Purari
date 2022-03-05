@@ -16,6 +16,7 @@
 		A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */; };
 		A130DF3A27D31F310023A4BE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A130DF3927D31F310023A4BE /* Realm */; };
 		A130DF3C27D31F310023A4BE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A130DF3B27D31F310023A4BE /* RealmSwift */; };
+		A130DF3E27D3245F0023A4BE /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF3D27D3245F0023A4BE /* Info.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A130DF2E27D0AC6E0023A4BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A130DF3027D0AC6E0023A4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSelectViewController.swift; sourceTree = "<group>"; };
+		A130DF3D27D3245F0023A4BE /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				A130DF2227D0AC6D0023A4BE /* AppDelegate.swift */,
 				A130DF2427D0AC6D0023A4BE /* SceneDelegate.swift */,
 				A130DF2827D0AC6D0023A4BE /* Main.storyboard */,
+				A130DF3D27D3245F0023A4BE /* Info.swift */,
 				A130DF2B27D0AC6E0023A4BE /* Assets.xcassets */,
 				A130DF2D27D0AC6E0023A4BE /* LaunchScreen.storyboard */,
 				A130DF3027D0AC6E0023A4BE /* Info.plist */,
@@ -155,6 +158,7 @@
 				A130DF2727D0AC6D0023A4BE /* ViewController.swift in Sources */,
 				A130DF2327D0AC6D0023A4BE /* AppDelegate.swift in Sources */,
 				A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */,
+				A130DF3E27D3245F0023A4BE /* Info.swift in Sources */,
 				A130DF2527D0AC6D0023A4BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

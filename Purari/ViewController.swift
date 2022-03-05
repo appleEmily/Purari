@@ -32,7 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         my_latitude = locationManager.location?.coordinate.latitude
         my_longitude = locationManager.location?.coordinate.longitude
         print("現在地緯度経度")
-        print(my_latitude!,my_longitude!)
+//        print(my_latitude!,my_longitude!)
         
         //mapの表示する範囲
         let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
