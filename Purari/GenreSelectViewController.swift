@@ -17,6 +17,7 @@ class GenreSelectViewController: UIViewController {
     
     var genre: Int!
     var genreArray: Array<Int> = []
+    var number: Int = 0
     
     //realm
     let realm = try! Realm()
@@ -30,7 +31,9 @@ class GenreSelectViewController: UIViewController {
         let playList: PlaceList? = readList()
         //めも：ジャンルがnilなことは基本的にないけど、それ以外の値に関しては、ジャンルと座標だけ登録されているケースがある。→いやない。基本的に空欄で保存する。のでこれでok
         if let playList = playList {
-            print(playList.list[genre].genre)
+            //[genre].genre
+            print(playList.list[number])
+            
         }
     }
     
@@ -46,26 +49,36 @@ class GenreSelectViewController: UIViewController {
     }
     
     @IBAction func lunchButtonTapped(_ sender: Any) {
+        number += 1
         genre = 0
         print("tapped")
-        saveGenre()
+//        saveGenre()
+        backMapVC()
     }
     
     @IBAction func DinnerButtonTapped(_ sender: Any) {
+        number += 1
         genre = 1
-        saveGenre()
+       // saveGenre()
+        backMapVC()
     }
     
     @IBAction func cafeButtonTapped(_ sender: Any) {
+        number += 1
         genre = 2
-        saveGenre()
+       // saveGenre()
+        backMapVC()
     }
     
     @IBAction func OtherButtonTapped(_ sender: Any) {
+        number += 1
         genre = 3
-        saveGenre()
+       // saveGenre()
+        backMapVC()
     }
     
+    //このメソッドおかしい。
+    //多分
     func saveGenre() {
         genreArray.append(genre)
         let info: Info? = read()
@@ -77,6 +90,7 @@ class GenreSelectViewController: UIViewController {
                 //listに突っ込む
                 placeList.list.append(info)
                 try! realm.write {
+                    
                     realm.add(placeList)
                 }
             }
@@ -87,9 +101,22 @@ class GenreSelectViewController: UIViewController {
             //listに突っ込む
             placeList.list.append(info)
             try! realm.write {
+                
                 realm.add(placeList)
             }
+            print(placeList.list[number])
         }
+    }
+    
+    func backMapVC() {
+        //ボタンが押されたことをMapVCに伝えて、画面遷移
+        let storyboard: UIStoryboard = self.storyboard!
+        //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+        let mapVC = ViewController()
+        mapVC.viewWillAppear(true)
+        mapVC.myPlace()
+        mapVC.putpin()
+        dismiss(animated: true, completion: nil)
     }
     
 }

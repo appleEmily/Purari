@@ -9,9 +9,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet var map: MKMapView? = MKMapView()
     
     var locationManager: CLLocationManager!
     // 取得した緯度を保持するインスタンス
@@ -24,20 +24,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //前の画面から戻ってきたことを検知
+        presentingViewController?.beginAppearanceTransition(true, animated: animated)
+        presentingViewController?.endAppearanceTransition()
+        myPlace()
         
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager!.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        my_latitude = locationManager.location?.coordinate.latitude
-        my_longitude = locationManager.location?.coordinate.longitude
-        print("現在地緯度経度")
-//        print(my_latitude!,my_longitude!)
-        
-        //mapの表示する範囲
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        map.setRegion(cr, animated: true)
-        
+        map?.mapType = .standard
     }
     
     @IBAction func genreOpen(_ sender: Any) {
@@ -47,12 +39,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let genreSelect = storyboard.instantiateViewController(withIdentifier: "Genre")
         genreSelect.sheetPresentationController?.detents = [.medium()]
         genreSelect.sheetPresentationController?.preferredCornerRadius = 28
-    
+        
         //ここが実際に移動するコードとなります
         self.present(genreSelect, animated: true, completion: nil)
         
     }
-    
     //map許可
     func locationManager(_ manager: CLLocationManager,didChangeAuthorization status: CLAuthorizationStatus) {// 許可を求めるためのdelegateメソッド
         switch status {
@@ -70,10 +61,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     /* 位置情報取得失敗時に実行される関数 */
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         // この例ではLogにErrorと表示するだけ．
+        //アラート　位置情報をオンにしてください。って出す
         NSLog("Error")
     }
+    //ピンを立てるメソッド
+    //ボタンを押されたら呼ばれる
+    func putpin() {
+        myPlace()
+        //ピンを生成
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
+        annotation.title = "タイトル"
+        annotation.subtitle = "サブタイトル"
+        self.map?.addAnnotation(annotation)
+        print("呼ばれた")
+    }
     
-    
+    func myPlace() {
+        //現在地
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager!.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        my_latitude = locationManager.location?.coordinate.latitude
+        my_longitude = locationManager.location?.coordinate.longitude
+        print("現在地緯度経度")
+        print(my_latitude!,my_longitude!)
+        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        map?.setRegion(cr, animated: true)
+    }
     
 }
 
