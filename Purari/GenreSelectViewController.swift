@@ -110,11 +110,11 @@ class GenreSelectViewController: UIViewController {
     
     func backMapVC() {
         //ボタンが押されたことをMapVCに伝えて、画面遷移
-        let storyboard: UIStoryboard = self.storyboard!
+//        let storyboard: UIStoryboard = self.storyboard!
         //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
         let mapVC = ViewController()
-        mapVC.viewWillAppear(true)
-        mapVC.myPlace()
+//        mapVC.viewWillAppear(true)
+//        mapVC.myPlace()
         mapVC.putpin()
         dismiss(animated: true, completion: nil)
     }

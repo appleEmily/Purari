@@ -9,11 +9,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var map: MKMapView? = MKMapView()
     
-    var locationManager: CLLocationManager!
+    var locationManager = CLLocationManager()
     // 取得した緯度を保持するインスタンス
     var my_latitude: CLLocationDegrees!
     // 取得した経度を保持するインスタンス
@@ -21,14 +21,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        
+//        map?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         //前の画面から戻ってきたことを検知
-        presentingViewController?.beginAppearanceTransition(true, animated: animated)
-        presentingViewController?.endAppearanceTransition()
-        myPlace()
+//        presentingViewController?.beginAppearanceTransition(true, animated: animated)
+//        presentingViewController?.endAppearanceTransition()
         
+        locationManager.startUpdatingLocation()
+        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        map?.setRegion(cr, animated: true)
+        
+        my_latitude = locationManager.location?.coordinate.latitude
+        my_longitude = locationManager.location?.coordinate.longitude
+        print("現在地緯度経度")
+        print(my_latitude!,my_longitude!)
+        
+        //myPlace()
         map?.mapType = .standard
     }
     
@@ -39,7 +52,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let genreSelect = storyboard.instantiateViewController(withIdentifier: "Genre")
         genreSelect.sheetPresentationController?.detents = [.medium()]
         genreSelect.sheetPresentationController?.preferredCornerRadius = 28
-        
         //ここが実際に移動するコードとなります
         self.present(genreSelect, animated: true, completion: nil)
         
@@ -48,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func locationManager(_ manager: CLLocationManager,didChangeAuthorization status: CLAuthorizationStatus) {// 許可を求めるためのdelegateメソッド
         switch status {
         case .notDetermined:// 許可されてない場合
-            manager.requestWhenInUseAuthorization()// 許可を求める
+            manager.requestAlwaysAuthorization()// 許可を求める
         case .restricted, .denied:// 拒否されてる場合
             break// 何もしない
         case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
@@ -79,16 +91,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func myPlace() {
         //現在地
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager!.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        map?.setRegion(cr, animated: true)
+        
         my_latitude = locationManager.location?.coordinate.latitude
         my_longitude = locationManager.location?.coordinate.longitude
         print("現在地緯度経度")
         print(my_latitude!,my_longitude!)
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        map?.setRegion(cr, animated: true)
+        
     }
     
 }

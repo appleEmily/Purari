@@ -311,9 +311,10 @@
 				DEVELOPMENT_TEAM = 743J7J89D4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Purari/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "許可します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を取得します。OK?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "許可します";
+				INFOPLIST_KEY_NSLocationUsageDescription = "位置情報を取得します。OK?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を取得します。OK?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -342,9 +343,10 @@
 				DEVELOPMENT_TEAM = 743J7J89D4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Purari/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "許可します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を取得します。OK?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "許可します";
+				INFOPLIST_KEY_NSLocationUsageDescription = "位置情報を取得します。OK?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を取得します。OK?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
