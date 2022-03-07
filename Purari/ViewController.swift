@@ -8,10 +8,11 @@
 import UIKit
 import MapKit
 import CoreLocation
+import RealmSwift
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    @IBOutlet var map: MKMapView? = MKMapView()
+    @IBOutlet var map: MKMapView!
     
     var locationManager = CLLocationManager()
     // 取得した緯度を保持するインスタンス
@@ -19,30 +20,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // 取得した経度を保持するインスタンス
     var my_longitude: CLLocationDegrees!
     
+    //realm
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
+        map.delegate = self
         
 //        map?.delegate = self
     }
+    //CLLocationの位置情報を取得するときの関数
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let cr = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+            map?.setRegion(cr, animated: true)
+            
+            my_latitude = locationManager.location?.coordinate.latitude
+            my_longitude = locationManager.location?.coordinate.longitude
+            print("現在地緯度経度")
+            print(my_latitude!,my_longitude!)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        //前の画面から戻ってきたことを検知
-//        presentingViewController?.beginAppearanceTransition(true, animated: animated)
-//        presentingViewController?.endAppearanceTransition()
-        
-        locationManager.startUpdatingLocation()
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        map?.setRegion(cr, animated: true)
-        
-        my_latitude = locationManager.location?.coordinate.latitude
-        my_longitude = locationManager.location?.coordinate.longitude
-        print("現在地緯度経度")
-        print(my_latitude!,my_longitude!)
-        
-        //myPlace()
         map?.mapType = .standard
+        
+        //realm
+        let info: Info? = read()
+    }
+    
+    func read() -> Info? {
+        print(realm.objects(Info.self).first)
+        return realm.objects(Info.self).first
     }
     
     @IBAction func genreOpen(_ sender: Any) {
@@ -85,8 +96,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
         annotation.title = "タイトル"
         annotation.subtitle = "サブタイトル"
-        self.map?.addAnnotation(annotation)
-        print("呼ばれた")
+        self.map.addAnnotation(annotation)
+        //ここで保存する。ジャンルと座標
+        
     }
     
     func myPlace() {
@@ -100,6 +112,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print("現在地緯度経度")
         print(my_latitude!,my_longitude!)
         
+    }
+    //mapをタップ
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation{
+            print("ピンをタップ！")
+            //まずは、同じstororyboard内であることをここで定義します
+            let storyboard: UIStoryboard = self.storyboard!
+            //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+            let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail")
+
+            navigationController?.pushViewController(detailVC, animated: true)
+
+//            //ここが実際に移動するコードとなります
+//            self.present(detailVC, animated: true, completion: nil)
+            
+        }
     }
     
 }

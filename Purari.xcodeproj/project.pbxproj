@@ -17,6 +17,10 @@
 		A130DF3A27D31F310023A4BE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A130DF3927D31F310023A4BE /* Realm */; };
 		A130DF3C27D31F310023A4BE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A130DF3B27D31F310023A4BE /* RealmSwift */; };
 		A130DF3E27D3245F0023A4BE /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF3D27D3245F0023A4BE /* Info.swift */; };
+		A130DF4127D501E00023A4BE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF3F27D501DF0023A4BE /* ListTableViewCell.swift */; };
+		A130DF4227D501E00023A4BE /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */; };
+		A130DF4427D501FD0023A4BE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4327D501FD0023A4BE /* ListViewController.swift */; };
+		A130DF4627D505FA0023A4BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4527D505FA0023A4BE /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		A130DF3027D0AC6E0023A4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSelectViewController.swift; sourceTree = "<group>"; };
 		A130DF3D27D3245F0023A4BE /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		A130DF3F27D501DF0023A4BE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		A130DF4327D501FD0023A4BE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		A130DF4527D505FA0023A4BE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,10 @@
 				A130DF3027D0AC6E0023A4BE /* Info.plist */,
 				A130DF2627D0AC6D0023A4BE /* ViewController.swift */,
 				A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */,
+				A130DF3F27D501DF0023A4BE /* ListTableViewCell.swift */,
+				A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */,
+				A130DF4327D501FD0023A4BE /* ListViewController.swift */,
+				A130DF4527D505FA0023A4BE /* DetailViewController.swift */,
 			);
 			path = Purari;
 			sourceTree = "<group>";
@@ -143,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A130DF2F27D0AC6E0023A4BE /* LaunchScreen.storyboard in Resources */,
+				A130DF4227D501E00023A4BE /* ListTableViewCell.xib in Resources */,
 				A130DF2C27D0AC6E0023A4BE /* Assets.xcassets in Resources */,
 				A130DF2A27D0AC6D0023A4BE /* Main.storyboard in Resources */,
 			);
@@ -160,6 +173,9 @@
 				A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */,
 				A130DF3E27D3245F0023A4BE /* Info.swift in Sources */,
 				A130DF2527D0AC6D0023A4BE /* SceneDelegate.swift in Sources */,
+				A130DF4127D501E00023A4BE /* ListTableViewCell.swift in Sources */,
+				A130DF4427D501FD0023A4BE /* ListViewController.swift in Sources */,
+				A130DF4627D505FA0023A4BE /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
