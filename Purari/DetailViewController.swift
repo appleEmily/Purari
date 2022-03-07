@@ -6,24 +6,49 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailViewController: UIViewController {
-
+    
+    var recievedNumber: Int = 0
+    
+    let realm = try! Realm()
+    
+    var genre: Int!
+    var imageName: String!
+    
+    @IBOutlet weak var genreImage: UIImageView!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var whoText: UITextField!
+    @IBOutlet weak var commentView: UITextView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let data = realm.objects(Info.self)[recievedNumber]
+        print(data)
+        genre = data.genre
+        setImage()
+        print(imageName)
+        cityLabel.text = data.city
+        nameText.text = data.name
+        whoText.text = data.who
+        commentView.text = data.comment
+        genreImage.image = UIImage(named: imageName)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setImage() {
+        if genre == 0 {
+            imageName = "lunch"
+        } else if genre == 1 {
+            imageName = "dinner"
+        } else if genre == 2 {
+            imageName = "cafe"
+        } else {
+            imageName = "other"
+        }
     }
-    */
-
+    
 }

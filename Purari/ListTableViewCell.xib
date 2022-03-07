@@ -15,9 +15,54 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="350" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x9r-wa-Gdf">
+                        <rect key="frame" x="12" y="5" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="ELG-s7-VuV"/>
+                            <constraint firstAttribute="height" constant="80" id="pvN-Qw-yRf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〇〇区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xea-f8-GMe">
+                        <rect key="frame" x="122" y="21" width="180" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="180" id="8kF-rk-BUU"/>
+                            <constraint firstAttribute="height" constant="20" id="kvp-VJ-RD8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="------" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RN-pP-XIe">
+                        <rect key="frame" x="122" y="49" width="180" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="180" id="UfL-b8-Op4"/>
+                            <constraint firstAttribute="height" constant="20" id="Vvb-hv-hhu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="x9r-wa-Gdf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="3uX-kX-pQJ"/>
+                    <constraint firstAttribute="trailing" secondItem="xea-f8-GMe" secondAttribute="trailing" constant="24" id="HHp-gQ-20L"/>
+                    <constraint firstAttribute="trailing" secondItem="3RN-pP-XIe" secondAttribute="trailing" constant="24" id="JhZ-dx-UCL"/>
+                    <constraint firstItem="3RN-pP-XIe" firstAttribute="leading" secondItem="x9r-wa-Gdf" secondAttribute="trailing" constant="30" id="OXM-yh-A24"/>
+                    <constraint firstItem="x9r-wa-Gdf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="VPb-N6-gXG"/>
+                    <constraint firstItem="xea-f8-GMe" firstAttribute="leading" secondItem="x9r-wa-Gdf" secondAttribute="trailing" constant="30" id="a5J-vh-z5K"/>
+                    <constraint firstAttribute="bottom" secondItem="x9r-wa-Gdf" secondAttribute="bottom" constant="5" id="hUZ-lC-L6W"/>
+                    <constraint firstItem="3RN-pP-XIe" firstAttribute="top" secondItem="xea-f8-GMe" secondAttribute="bottom" constant="8" id="o59-TJ-ntd"/>
+                    <constraint firstItem="xea-f8-GMe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="ufI-xd-6X9"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="139" y="98"/>
+            <connections>
+                <outlet property="cityLabel" destination="xea-f8-GMe" id="I2L-2y-4pr"/>
+                <outlet property="genreImage" destination="x9r-wa-Gdf" id="MQL-a4-DoC"/>
+                <outlet property="nameLabel" destination="3RN-pP-XIe" id="kfg-jt-PHz"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </tableViewCell>
     </objects>
 </document>

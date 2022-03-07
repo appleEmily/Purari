@@ -23,13 +23,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //realm
     let realm = try! Realm()
     
+    var recievedGenre: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         map.delegate = self
         
-//        map?.delegate = self
+        //        map?.delegate = self
     }
     //CLLocationの位置情報を取得するときの関数
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -47,10 +49,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewWillAppear(_ animated: Bool) {
         map?.mapType = .standard
         
-        //realm
-        let info: Info? = read()
+        //realm最初からピンを立てる時に使う予定
+        let info = Info()
     }
     
+    //使ってない
     func read() -> Info? {
         print(realm.objects(Info.self).first)
         return realm.objects(Info.self).first
@@ -97,8 +100,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         annotation.title = "タイトル"
         annotation.subtitle = "サブタイトル"
         self.map.addAnnotation(annotation)
-        //ここで保存する。ジャンルと座標
-        
+        //保存処理
+        let info = Info()
+        if let last = realm.objects(Info.self).sorted(byKeyPath: "id",ascending: true).last {
+            info.id = last.id + 1
+            try! realm.write {
+                
+                info.latitude = my_latitude
+                info.longitude = my_longitude
+                info.genre = recievedGenre
+                realm.add(info)
+                print(realm.objects(Info.self))
+                
+            }
+        } else {
+            info.id = 0
+            info.latitude = my_latitude
+            info.longitude = my_longitude
+            info.genre = recievedGenre
+            try! realm.write {
+                realm.add(info)
+            }
+            print(realm.objects(Info.self))
+        }
     }
     
     func myPlace() {
@@ -121,11 +145,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let storyboard: UIStoryboard = self.storyboard!
             //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
             let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail")
-
+            
             navigationController?.pushViewController(detailVC, animated: true)
-
-//            //ここが実際に移動するコードとなります
-//            self.present(detailVC, animated: true, completion: nil)
+            
+            //            //ここが実際に移動するコードとなります
+            //            self.present(detailVC, animated: true, completion: nil)
             
         }
     }

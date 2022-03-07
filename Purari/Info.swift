@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class Info: Object {
-    @objc dynamic var id : String = NSUUID().uuidString
+    @objc dynamic var id : Int = 0
     @objc dynamic var genre: Int = 0
     @objc dynamic var latitude: Double = 0.0
     @objc dynamic var longitude: Double = 0.0
@@ -17,4 +17,9 @@ class Info: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var who: String = ""
     @objc dynamic var comment: String = ""
+    
+    override static func primaryKey() -> String {
+            return "id"
+        }
+    
 }
