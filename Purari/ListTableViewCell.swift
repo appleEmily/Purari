@@ -14,6 +14,9 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var cityLabel: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var mainBackground: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

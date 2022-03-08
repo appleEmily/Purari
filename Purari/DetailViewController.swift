@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var whoText: UITextField!
     @IBOutlet weak var commentView: UITextView!
     
+    @IBOutlet weak var card: UIView!
+    @IBOutlet weak var goButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +32,28 @@ class DetailViewController: UIViewController {
         print(data)
         genre = data.genre
         setImage()
-        print(imageName)
+        print(imageName!)
         cityLabel.text = data.city
         nameText.text = data.name
         whoText.text = data.who
         commentView.text = data.comment
         genreImage.image = UIImage(named: imageName)
         
+        //UI設定
+        card.layer.cornerRadius = 10.0
+        card.layer.shadowOffset = CGSize(width: 0, height: 0)
+        card.layer.shadowRadius = 10.0
+        card.layer.shadowColor = UIColor.black.cgColor
+        //UIColor(red: 186, green: 186, blue: 186, alpha: 0.25).cgColor
+        card.layer.shadowOpacity = 0.25
+        
+        goButton.layer.cornerRadius = 10.0
+        goButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        goButton.layer.shadowRadius = 12.0
+        goButton.layer.shadowColor = UIColor.black.cgColor
+        goButton.layer.shadowOpacity = 0.25
+        
+        commentView.layer.cornerRadius = 10.0
     }
     
     func setImage() {
@@ -49,6 +66,10 @@ class DetailViewController: UIViewController {
         } else {
             imageName = "other"
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }

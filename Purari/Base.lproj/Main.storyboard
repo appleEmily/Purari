@@ -219,8 +219,8 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-NT-4Ri">
-                                <rect key="frame" x="20" y="181" width="374" height="705"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="20" y="181" width="374" height="699"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="1Xg-ws-9Lu">
@@ -240,7 +240,7 @@
                         <viewLayoutGuide key="safeArea" id="B1H-lI-WXg"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Y0a-NT-4Ri" secondAttribute="bottom" constant="10" id="0t0-wy-9mJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Y0a-NT-4Ri" secondAttribute="bottom" constant="16" id="0t0-wy-9mJ"/>
                             <constraint firstItem="0RC-hF-S9X" firstAttribute="top" secondItem="B1H-lI-WXg" secondAttribute="top" id="E0x-p0-K5a"/>
                             <constraint firstItem="B1H-lI-WXg" firstAttribute="trailing" secondItem="Y0a-NT-4Ri" secondAttribute="trailing" constant="20" id="HwT-GC-alb"/>
                             <constraint firstItem="Y0a-NT-4Ri" firstAttribute="top" secondItem="0RC-hF-S9X" secondAttribute="bottom" constant="16" id="Yew-72-LV7"/>
@@ -351,7 +351,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.7843137255" green="0.83137254900000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="uHd-vM-Ghz" firstAttribute="centerX" secondItem="Nb9-HR-E4G" secondAttribute="centerX" id="0bC-Ga-Nti"/>
                                     <constraint firstAttribute="height" constant="620" id="4hv-hb-9fO"/>
@@ -387,9 +387,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="WzS-wG-Aw9"/>
                     <connections>
+                        <outlet property="card" destination="Nb9-HR-E4G" id="Azq-tP-NxN"/>
                         <outlet property="cityLabel" destination="XFn-Ej-EEf" id="9qz-0Y-HM1"/>
                         <outlet property="commentView" destination="NNf-S3-pny" id="8uI-gD-xPC"/>
                         <outlet property="genreImage" destination="3s3-VM-5qF" id="ayV-5u-1XT"/>
+                        <outlet property="goButton" destination="4QC-8J-Qhn" id="GLT-Fp-F7U"/>
                         <outlet property="nameText" destination="LsP-fk-cd3" id="juJ-uf-X6L"/>
                         <outlet property="whoText" destination="h3e-zd-9nY" id="xf4-TO-Evc"/>
                     </connections>
