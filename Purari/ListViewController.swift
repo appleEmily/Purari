@@ -46,12 +46,16 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         genre = data[indexPath.row].genre
         setImage()
         cell.imageView?.image = UIImage(named: imageName)
+        cell.imageView?.frame = CGRect(x: 8,
+                                       y: 10,
+                                       width: 70,
+                                       height: 70)
         
         //UI
         cell.mainBackground.layer.cornerRadius = 10.0
         cell.mainBackground.layer.masksToBounds = true
-        cell.backgroundColor = .systemGray6
-//        cell.backgroundColor = UIColor.clear
+        // cell.backgroundColor = .white
+        cell.backgroundColor = UIColor.clear
         //cell.mainBackground.layer.borderWidth = 1
         //cell.mainBackground.layer.borderColor = UIColor.gray.cgColor
         
@@ -80,8 +84,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         table.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 100
-        }
+        return 120
+    }
 }
 
 class ShadowView: UIView {
@@ -94,8 +98,9 @@ class ShadowView: UIView {
     private func setupShadow() {
         self.layer.cornerRadius = 10.0
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 10.0
+        self.layer.shadowRadius = 12.0
         self.layer.shadowOpacity = 0.25
+        self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
