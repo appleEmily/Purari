@@ -17,6 +17,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var genre: Int!
     var imageName: String!
     
+    //UINavigationBarに設置するボタン
+    var backButtonItem: UIBarButtonItem!
+
+    
     //let info = Info()
     
     override func viewDidLoad() {
@@ -30,7 +34,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //ダークモード回避
         self.overrideUserInterfaceStyle = .light
+        //UI
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.tintColor = UIColor.clear
+        
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let data = realm.objects(Info.self)

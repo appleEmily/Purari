@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let config = Realm.Configuration(
         schemaVersion: 1,
@@ -20,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         deleteRealmIfMigrationNeeded: true)
         
         Realm.Configuration.defaultConfiguration = config
+        
+        //naviのbackボタン
+        let image = UIImage(named: "yajirushi")?.withRenderingMode(.alwaysOriginal)
+        UINavigationBar.appearance().backIndicatorImage = image
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = image
 
     return true
 }

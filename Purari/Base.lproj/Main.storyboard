@@ -4,19 +4,21 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--◯◯区-->
+        <!-- - -->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MapVC" id="BYZ-38-t0r" customClass="ViewController" customModule="Purari" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="MapVC" id="BYZ-38-t0r" userLabel="-" customClass="ViewController" customModule="Purari" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CaJ-QE-xDf">
-                                <rect key="frame" x="0.0" y="35" width="414" height="861"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-1b-UUd">
@@ -34,10 +36,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="◯◯区" id="XB9-3t-EFu">
+                    <navigationItem key="navigationItem" id="XB9-3t-EFu">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="PIN@4x" id="KNe-1Q-xha">
                             <connections>
-                                <segue destination="wck-oa-JqC" kind="show" id="XD4-Ub-c82"/>
+                                <action selector="goList:" destination="BYZ-38-t0r" id="o8J-eX-Ys8"/>
+                                <segue destination="wck-oa-JqC" kind="show" identifier="goList" id="XD4-Ub-c82"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -45,14 +48,13 @@
                         <outlet property="map" destination="CaJ-QE-xDf" id="ISZ-KR-1hT"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="116.51785714285714"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navi View Controller-->
         <scene sceneID="zjf-aM-O4G">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W4P-9k-pB7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W4P-9k-pB7" customClass="NaviViewController" customModule="Purari" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ab-FP-foa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -78,11 +80,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="iQz-ja-3Mp">
                                 <rect key="frame" x="78" y="584" width="258" height="258"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="THB-75-h1u">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="THB-75-h1u">
                                         <rect key="frame" x="0.0" y="0.0" width="258" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXA-GM-aGf">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="120"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="lunch"/>
@@ -92,7 +94,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y32-X7-LRG">
-                                                <rect key="frame" x="138" y="0.0" width="120" height="120"/>
+                                                <rect key="frame" x="133" y="0.0" width="125" height="120"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="dinner"/>
@@ -103,11 +105,11 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ze8-Bd-9wI">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ze8-Bd-9wI">
                                         <rect key="frame" x="0.0" y="138" width="258" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-CD-14o">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="120"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="cafe"/>
@@ -117,7 +119,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEL-9P-AjK">
-                                                <rect key="frame" x="138" y="0.0" width="120" height="120"/>
+                                                <rect key="frame" x="133" y="0.0" width="125" height="120"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="other"/>
@@ -173,7 +175,7 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="791.51785714285711"/>
         </scene>
-        <!--List View Controller-->
+        <!-- -->
         <scene sceneID="nxa-An-4eo">
             <objects>
                 <viewController id="wck-oa-JqC" customClass="ListViewController" customModule="Purari" customModuleProvider="target" sceneMemberID="viewController">
@@ -248,7 +250,7 @@
                             <constraint firstItem="0RC-hF-S9X" firstAttribute="centerX" secondItem="vj3-o7-cHk" secondAttribute="centerX" id="vsD-xb-10x"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Kws-jq-xPq"/>
+                    <navigationItem key="navigationItem" title=" " id="Kws-jq-xPq"/>
                     <connections>
                         <outlet property="table" destination="Y0a-NT-4Ri" id="lC4-ov-cP0"/>
                     </connections>
@@ -265,21 +267,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QC-8J-Qhn">
-                                <rect key="frame" x="32" y="796" width="350" height="50"/>
-                                <color key="backgroundColor" red="0.89411764709999997" green="0.71764705880000002" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="350" id="JDJ-Ph-Yxc"/>
-                                    <constraint firstAttribute="height" constant="50" id="egi-XX-YaP"/>
-                                </constraints>
-                                <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="ここにいく">
-                                    <fontDescription key="titleFontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="16"/>
-                                </buttonConfiguration>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nb9-HR-E4G">
-                                <rect key="frame" x="32" y="146" width="350" height="620"/>
+                                <rect key="frame" x="32" y="165" width="350" height="620"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3s3-VM-5qF">
                                         <rect key="frame" x="40" y="25.5" width="140" height="140"/>
@@ -375,14 +364,25 @@
                                     <constraint firstAttribute="trailing" secondItem="XFn-Ej-EEf" secondAttribute="trailing" constant="40" id="zJE-UQ-QJd"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgE-Vc-qZF">
+                                <rect key="frame" x="32" y="815" width="350" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="Crp-zq-95o"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="ここにいく"/>
+                                <connections>
+                                    <action selector="goHere:" destination="auE-No-3mE" eventType="touchUpInside" id="i69-O2-Wd8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sSj-4C-kAw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sSj-4C-kAw" firstAttribute="bottom" secondItem="4QC-8J-Qhn" secondAttribute="bottom" constant="16" id="9m2-BN-jfq"/>
-                            <constraint firstItem="4QC-8J-Qhn" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="bottom" constant="30" id="dbI-Wb-OlE"/>
+                            <constraint firstItem="pgE-Vc-qZF" firstAttribute="centerX" secondItem="wCL-E5-XIi" secondAttribute="centerX" id="FJf-Tr-p6J"/>
+                            <constraint firstItem="pgE-Vc-qZF" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="bottom" constant="30" id="dDo-M9-w1i"/>
                             <constraint firstItem="Nb9-HR-E4G" firstAttribute="centerX" secondItem="wCL-E5-XIi" secondAttribute="centerX" id="gc5-BN-EdO"/>
-                            <constraint firstItem="4QC-8J-Qhn" firstAttribute="centerX" secondItem="wCL-E5-XIi" secondAttribute="centerX" id="jUs-er-SHN"/>
+                            <constraint firstItem="sSj-4C-kAw" firstAttribute="bottom" secondItem="pgE-Vc-qZF" secondAttribute="bottom" constant="16" id="gmo-AC-a7B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WzS-wG-Aw9"/>
@@ -391,7 +391,7 @@
                         <outlet property="cityLabel" destination="XFn-Ej-EEf" id="9qz-0Y-HM1"/>
                         <outlet property="commentView" destination="NNf-S3-pny" id="8uI-gD-xPC"/>
                         <outlet property="genreImage" destination="3s3-VM-5qF" id="ayV-5u-1XT"/>
-                        <outlet property="goButton" destination="4QC-8J-Qhn" id="GLT-Fp-F7U"/>
+                        <outlet property="goButton" destination="pgE-Vc-qZF" id="T97-g7-syg"/>
                         <outlet property="nameText" destination="LsP-fk-cd3" id="juJ-uf-X6L"/>
                         <outlet property="whoText" destination="h3e-zd-9nY" id="xf4-TO-Evc"/>
                     </connections>

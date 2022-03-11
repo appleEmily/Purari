@@ -21,6 +21,7 @@
 		A130DF4227D501E00023A4BE /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */; };
 		A130DF4427D501FD0023A4BE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4327D501FD0023A4BE /* ListViewController.swift */; };
 		A130DF4627D505FA0023A4BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4527D505FA0023A4BE /* DetailViewController.swift */; };
+		A145B58827DB2821006741DF /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A145B58727DB2821006741DF /* NaviViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		A130DF4327D501FD0023A4BE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A130DF4527D505FA0023A4BE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A145B58727DB2821006741DF /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				A130DF2427D0AC6D0023A4BE /* SceneDelegate.swift */,
 				A130DF2827D0AC6D0023A4BE /* Main.storyboard */,
 				A130DF3D27D3245F0023A4BE /* Info.swift */,
+				A145B58727DB2821006741DF /* NaviViewController.swift */,
 				A130DF2B27D0AC6E0023A4BE /* Assets.xcassets */,
 				A130DF2D27D0AC6E0023A4BE /* LaunchScreen.storyboard */,
 				A130DF3027D0AC6E0023A4BE /* Info.plist */,
@@ -172,6 +175,7 @@
 				A130DF2327D0AC6D0023A4BE /* AppDelegate.swift in Sources */,
 				A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */,
 				A130DF3E27D3245F0023A4BE /* Info.swift in Sources */,
+				A145B58827DB2821006741DF /* NaviViewController.swift in Sources */,
 				A130DF2527D0AC6D0023A4BE /* SceneDelegate.swift in Sources */,
 				A130DF4127D501E00023A4BE /* ListTableViewCell.swift in Sources */,
 				A130DF4427D501FD0023A4BE /* ListViewController.swift in Sources */,

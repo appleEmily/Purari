@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var card: UIView!
     @IBOutlet weak var goButton: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let data = realm.objects(Info.self)[recievedNumber]
@@ -54,6 +55,22 @@ class DetailViewController: UIViewController {
         commentView.layer.cornerRadius = 10.0
         
         self.overrideUserInterfaceStyle = .light
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.tintColor = UIColor.clear
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let info = Info()
+        info.id = recievedNumber
+        //print(info.id)
+        
+        let selected = realm.objects(Info.self).filter("id == \(recievedNumber)")
+        try! realm.write {
+            selected.setValue(nameText.text!, forKey: "name")
+            selected.setValue(whoText.text!, forKey: "who")
+            selected.setValue(commentView.text!, forKey: "comment")
+        }
     }
     
     func setImage() {
@@ -72,4 +89,10 @@ class DetailViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func goHere(_ sender: Any) {
+
+        
+    }
+
+
 }

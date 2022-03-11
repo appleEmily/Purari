@@ -32,6 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         map.delegate = self
         
         self.overrideUserInterfaceStyle = .light
+        //navigationの文字の色
     }
     //CLLocationの位置情報を取得するときの関数
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -152,6 +153,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             //            self.present(detailVC, animated: true, completion: nil)
             
         }
+    }
+    @IBAction func goList(_ sender: Any) {
+        //画面遷移。
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "goList") as! DetailViewController
+        self.navigationController?.pushViewController(nextView, animated: true)
     }
     
 }
