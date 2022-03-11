@@ -30,6 +30,7 @@ class GenreSelectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
     }
     
     func read() -> Info? {

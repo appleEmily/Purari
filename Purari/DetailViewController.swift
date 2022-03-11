@@ -29,10 +29,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let data = realm.objects(Info.self)[recievedNumber]
-        print(data)
         genre = data.genre
         setImage()
-        print(imageName!)
         cityLabel.text = data.city
         nameText.text = data.name
         whoText.text = data.who
@@ -54,6 +52,8 @@ class DetailViewController: UIViewController {
         goButton.layer.shadowOpacity = 0.25
         
         commentView.layer.cornerRadius = 10.0
+        
+        self.overrideUserInterfaceStyle = .light
     }
     
     func setImage() {

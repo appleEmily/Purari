@@ -26,9 +26,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         table.dataSource = self
         table.separatorStyle = .none
         //table.separatorColor = .black
-        
         table.backgroundView = nil
         
+        //ダークモード回避
+        self.overrideUserInterfaceStyle = .light
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,17 +46,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         genre = data[indexPath.row].genre
         setImage()
-        cell.imageView?.image = UIImage(named: imageName)
-        cell.imageView?.frame = CGRect(x: 8,
-                                       y: 10,
-                                       width: 70,
-                                       height: 70)
+        cell.genreImage.image = UIImage(named: imageName)
         
         //UI
         cell.mainBackground.layer.cornerRadius = 10.0
         cell.mainBackground.layer.masksToBounds = true
         // cell.backgroundColor = .white
         cell.backgroundColor = UIColor.clear
+        //cell.genreImage.image =
         //cell.mainBackground.layer.borderWidth = 1
         //cell.mainBackground.layer.borderColor = UIColor.gray.cgColor
         

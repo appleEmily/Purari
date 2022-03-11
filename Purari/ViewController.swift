@@ -31,7 +31,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         locationManager.delegate = self
         map.delegate = self
         
-        //        map?.delegate = self
+        self.overrideUserInterfaceStyle = .light
     }
     //CLLocationの位置情報を取得するときの関数
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
