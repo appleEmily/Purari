@@ -267,8 +267,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QC-8J-Qhn">
+                                <rect key="frame" x="32" y="796" width="350" height="50"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.71764705880000002" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="JDJ-Ph-Yxc"/>
+                                    <constraint firstAttribute="height" constant="50" id="egi-XX-YaP"/>
+                                </constraints>
+                                <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="ここにいく">
+                                    <fontDescription key="titleFontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goHere:" destination="auE-No-3mE" eventType="touchUpInside" id="efm-ul-1IK"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nb9-HR-E4G">
-                                <rect key="frame" x="32" y="165" width="350" height="620"/>
+                                <rect key="frame" x="32" y="146" width="350" height="620"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3s3-VM-5qF">
                                         <rect key="frame" x="40" y="25.5" width="140" height="140"/>
@@ -364,25 +380,14 @@
                                     <constraint firstAttribute="trailing" secondItem="XFn-Ej-EEf" secondAttribute="trailing" constant="40" id="zJE-UQ-QJd"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgE-Vc-qZF">
-                                <rect key="frame" x="32" y="815" width="350" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="350" id="Crp-zq-95o"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="ここにいく"/>
-                                <connections>
-                                    <action selector="goHere:" destination="auE-No-3mE" eventType="touchUpInside" id="i69-O2-Wd8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sSj-4C-kAw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pgE-Vc-qZF" firstAttribute="centerX" secondItem="wCL-E5-XIi" secondAttribute="centerX" id="FJf-Tr-p6J"/>
-                            <constraint firstItem="pgE-Vc-qZF" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="bottom" constant="30" id="dDo-M9-w1i"/>
+                            <constraint firstItem="sSj-4C-kAw" firstAttribute="bottom" secondItem="4QC-8J-Qhn" secondAttribute="bottom" constant="16" id="9m2-BN-jfq"/>
+                            <constraint firstItem="4QC-8J-Qhn" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="bottom" constant="30" id="dbI-Wb-OlE"/>
                             <constraint firstItem="Nb9-HR-E4G" firstAttribute="centerX" secondItem="wCL-E5-XIi" secondAttribute="centerX" id="gc5-BN-EdO"/>
-                            <constraint firstItem="sSj-4C-kAw" firstAttribute="bottom" secondItem="pgE-Vc-qZF" secondAttribute="bottom" constant="16" id="gmo-AC-a7B"/>
+                            <constraint firstItem="4QC-8J-Qhn" firstAttribute="centerX" secondItem="wCL-E5-XIi" secondAttribute="centerX" id="jUs-er-SHN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WzS-wG-Aw9"/>
@@ -391,7 +396,7 @@
                         <outlet property="cityLabel" destination="XFn-Ej-EEf" id="9qz-0Y-HM1"/>
                         <outlet property="commentView" destination="NNf-S3-pny" id="8uI-gD-xPC"/>
                         <outlet property="genreImage" destination="3s3-VM-5qF" id="ayV-5u-1XT"/>
-                        <outlet property="goButton" destination="pgE-Vc-qZF" id="T97-g7-syg"/>
+                        <outlet property="goButton" destination="4QC-8J-Qhn" id="GLT-Fp-F7U"/>
                         <outlet property="nameText" destination="LsP-fk-cd3" id="juJ-uf-X6L"/>
                         <outlet property="whoText" destination="h3e-zd-9nY" id="xf4-TO-Evc"/>
                     </connections>

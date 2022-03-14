@@ -25,6 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     var recievedGenre: Int!
     
+    var pinImage: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
@@ -32,8 +34,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         map.delegate = self
         
         self.overrideUserInterfaceStyle = .light
+        
         //navigationの文字の色
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        map?.mapType = .standard
+        
+        //ピン立てるよ
+        var savedInfo :[Info] = []
+        for i in realm.objects(Info.self) {
+            savedInfo.append(i)
+        }
+        print(savedInfo)
+        //ピンを立てるよ
+        savedInfo.forEach { savedInfo in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
+            
+            self.map.addAnnotation(annotation)
+            
+        }
+        
+    }
+    
     //CLLocationの位置情報を取得するときの関数
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -42,22 +66,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
             my_latitude = locationManager.location?.coordinate.latitude
             my_longitude = locationManager.location?.coordinate.longitude
+            let pin = MKPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
+            map.addAnnotation(pin)
             print("現在地緯度経度")
             print(my_latitude!,my_longitude!)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        map?.mapType = .standard
-        
-        //realm最初からピンを立てる時に使う予定
-        let info = Info()
-    }
-    
-    //使ってない
-    func read() -> Info? {
-        print(realm.objects(Info.self).first)
-        return realm.objects(Info.self).first
     }
     
     @IBAction func genreOpen(_ sender: Any) {
@@ -90,6 +104,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         // この例ではLogにErrorと表示するだけ．
         //アラート　位置情報をオンにしてください。って出す
         NSLog("Error")
+    }
+    
+    func myPlace() {
+        //現在地
+        locationManager.startUpdatingLocation()
+        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        map?.setRegion(cr, animated: true)
+        
+        my_latitude = locationManager.location?.coordinate.latitude
+        my_longitude = locationManager.location?.coordinate.longitude
+        print("現在地緯度経度")
+        print(my_latitude!,my_longitude!)
+        
+    }
+    //mapをタップ
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation{
+            print("ピンをタップ！")
+            //まずは、同じstororyboard内であることをここで定義します
+            let storyboard: UIStoryboard = self.storyboard!
+            //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+            let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail")
+            
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        }
     }
     //ピンを立てるメソッド
     //ボタンを押されたら呼ばれる
@@ -126,34 +166,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
-    func myPlace() {
-        //現在地
-        locationManager.startUpdatingLocation()
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        map?.setRegion(cr, animated: true)
-        
-        my_latitude = locationManager.location?.coordinate.latitude
-        my_longitude = locationManager.location?.coordinate.longitude
-        print("現在地緯度経度")
-        print(my_latitude!,my_longitude!)
-        
-    }
-    //mapをタップ
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation{
-            print("ピンをタップ！")
-            //まずは、同じstororyboard内であることをここで定義します
-            let storyboard: UIStoryboard = self.storyboard!
-            //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
-            let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail")
-            
-            navigationController?.pushViewController(detailVC, animated: true)
-            
-            //            //ここが実際に移動するコードとなります
-            //            self.present(detailVC, animated: true, completion: nil)
-            
+    //ピンにセットする画像を決める
+    func pinImageSelect() {
+        switch recievedGenre {
+        case 0:
+            pinImage = "pin_lunch"
+        case 1:
+            pinImage = "pin_dinner"
+        case 2:
+            pinImage = "pin_cafe"
+        case 3:
+            pinImage = "pin_other"
+        default:
+            pinImage = "pin_other"
         }
     }
+    //mapのピンのデザイン
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+        pinImageSelect()
+        let annoView = MKPinAnnotationView()
+        annoView.annotation = annotation
+        annoView.image = UIImage(named: pinImage)
+        
+        return annoView
+    }
+    
     @IBAction func goList(_ sender: Any) {
         //画面遷移。
         let storyboard: UIStoryboard = self.storyboard!
