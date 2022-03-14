@@ -13,18 +13,30 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var table: UITableView!
     
     let realm = try! Realm()
+    var data: Results<Info>!
+    // var filterArray: Array<Info>!
     
     var genre: Int!
     var imageName: String!
+    var dataArray: Array<Any>!
+    
+    var lunchBool: Bool = true
+    var dinnerBool:Bool = true
+    var cafeBool: Bool = true
+    var otherBool: Bool = true
+    
+    //配列の足し算にすれば良い？
+    //そうするとジャンルごとに並んじゃうなぁ
     
     //UINavigationBarに設置するボタン
     var backButtonItem: UIBarButtonItem!
-
     
-    //let info = Info()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        data = realm.objects(Info.self)
+        
         table.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.delegate = self
         table.dataSource = self
@@ -40,16 +52,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = realm.objects(Info.self)
         return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListTableViewCell
-        let data = realm.objects(Info.self)
         setImage()
         print(data)
         cell.cityLabel.text = String(data[indexPath.row].genre)
@@ -63,10 +71,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.mainBackground.layer.masksToBounds = true
         // cell.backgroundColor = .white
         cell.backgroundColor = UIColor.clear
-        //cell.genreImage.image =
-        //cell.mainBackground.layer.borderWidth = 1
-        //cell.mainBackground.layer.borderColor = UIColor.gray.cgColor
-        
         return cell
     }
     
@@ -93,6 +97,53 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            try! realm.write{
+                realm.delete(data[indexPath.row])
+            }
+            table.reloadData()
+            
+        }
+        
+    }
+    
+    @IBAction func lunch(_ sender: Any) {
+        if lunchBool == true {
+            lunchBool = false
+        } else {
+            lunchBool = true
+        }
+        
+    }
+    
+    @IBAction func dinner(_ sender: Any) {
+        if dinnerBool == true {
+            dinnerBool = false
+        } else {
+            dinnerBool = true
+        }
+    }
+    
+    @IBAction func cafe(_ sender: Any) {
+        if cafeBool == true {
+            cafeBool = false
+        } else {
+            cafeBool = true
+        }
+    }
+    
+    @IBAction func other(_ sender: Any) {
+        if otherBool == true {
+            otherBool = false
+        } else {
+            otherBool = true
+        }
+    }
+    
+    func filter() {
+        
     }
 }
 

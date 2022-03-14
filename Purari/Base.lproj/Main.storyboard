@@ -11,7 +11,6 @@
         <!-- - -->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MapVC" id="BYZ-38-t0r" userLabel="-" customClass="ViewController" customModule="Purari" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -48,6 +47,7 @@
                         <outlet property="map" destination="CaJ-QE-xDf" id="ISZ-KR-1hT"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="116.51785714285714"/>
         </scene>
@@ -192,6 +192,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="lunch"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="lunch:" destination="wck-oa-JqC" eventType="touchUpInside" id="uUD-OS-SzV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4b-xw-OV4">
                                         <rect key="frame" x="91" y="0.0" width="77" height="77"/>
@@ -199,6 +202,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="dinner"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="dinner:" destination="wck-oa-JqC" eventType="touchUpInside" id="mBS-fe-4vW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37b-s6-EAb">
                                         <rect key="frame" x="182" y="0.0" width="77" height="77"/>
@@ -206,6 +212,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="cafe"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="cafe:" destination="wck-oa-JqC" eventType="touchUpInside" id="WcY-qh-kyI"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mb9-J6-2I1">
                                         <rect key="frame" x="273" y="0.0" width="77" height="77"/>
@@ -213,6 +222,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="other"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="other:" destination="wck-oa-JqC" eventType="touchUpInside" id="ML2-xW-pn3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

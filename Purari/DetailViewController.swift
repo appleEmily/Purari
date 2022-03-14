@@ -94,9 +94,27 @@ class DetailViewController: UIViewController {
     
     @IBAction func goHere(_ sender: Any) {
         //navigationの画面遷移を書く。どこにいくのか、の値が渡される
+        let data = realm.objects(Info.self)[recievedNumber]
+        let latitude = data.latitude
+        let longitude = data.longitude
+        print(latitude)
+        let urlString: String!
+        
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            urlString = "comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=walking&zoom=14"
+            print(urlString!)
+        }
+        else {
+            urlString = "http://maps.apple.com/?daddr=\(latitude),\(longitude)&dirflg=w"
+            print(urlString!)
+        }
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
+        
         
     }
-
+    
 }
 
 extension UITextField {

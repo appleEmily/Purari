@@ -33,7 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         locationManager.delegate = self
         map.delegate = self
         
-        self.overrideUserInterfaceStyle = .light
+        self.overrideUserInterfaceStyle = .dark
         
         //navigationの文字の色
     }
@@ -61,7 +61,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //CLLocationの位置情報を取得するときの関数
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let cr = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+            let cr = MKCoordinateRegion(center: location.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
             map?.setRegion(cr, animated: true)
             
             my_latitude = locationManager.location?.coordinate.latitude
@@ -83,8 +83,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         genreSelect.sheetPresentationController?.preferredCornerRadius = 28
         //ここが実際に移動するコードとなります
         self.present(genreSelect, animated: true, completion: nil)
-        
     }
+    
     //map許可
     func locationManager(_ manager: CLLocationManager,didChangeAuthorization status: CLAuthorizationStatus) {// 許可を求めるためのdelegateメソッド
         switch status {
@@ -109,8 +109,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func myPlace() {
         //現在地
         locationManager.startUpdatingLocation()
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        map?.setRegion(cr, animated: true)
+        //let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        //map?.setRegion(cr, animated: true)
         
         my_latitude = locationManager.location?.coordinate.latitude
         my_longitude = locationManager.location?.coordinate.longitude
@@ -138,8 +138,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //ピンを生成
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
-        annotation.title = "タイトル"
-        annotation.subtitle = "サブタイトル"
         self.map.addAnnotation(annotation)
         //保存処理
         let info = Info()
@@ -181,6 +179,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             pinImage = "pin_other"
         }
     }
+    
     //mapのピンのデザイン
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
