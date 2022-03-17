@@ -27,6 +27,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     var pinImage: String!
     
+    var city: String!
+    
+    var sendNumber: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
@@ -69,6 +73,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let pin = MKPointAnnotation()
             pin.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
             map.addAnnotation(pin)
+            
+            //市町村を取得
+            CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+                guard
+                    let placemark = placemarks?.first, error == nil,
+                    let locality = placemark.locality
+                else {
+                    
+                    return
+                }
+                self.city = locality
+                print(self.city!)
+                
+            }
+            
+            
             print("現在地緯度経度")
             print(my_latitude!,my_longitude!)
         }
@@ -125,7 +145,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             //まずは、同じstororyboard内であることをここで定義します
             let storyboard: UIStoryboard = self.storyboard!
             //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
-            let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail")
+            let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+            detailVC.recievedLatitude = annotation.coordinate.latitude
+            
+            detailVC.recievedLongitude = annotation.coordinate.longitude
+            print(detailVC.recievedLatitude)
             
             navigationController?.pushViewController(detailVC, animated: true)
             
@@ -138,6 +162,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //ピンを生成
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
+        sendNumber += 1
+        annotation.title = String(sendNumber)
         self.map.addAnnotation(annotation)
         //保存処理
         let info = Info()

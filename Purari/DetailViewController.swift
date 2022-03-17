@@ -10,6 +10,8 @@ import RealmSwift
 
 class DetailViewController: UIViewController {
     
+    var recievedLatitude: Double = 0.0
+    var recievedLongitude: Double = 0.0
     var recievedNumber: Int = 0
     
     let realm = try! Realm()
@@ -64,16 +66,22 @@ class DetailViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        let info = Info()
-        info.id = recievedNumber
+        //info.id = recievedNumber
         //print(info.id)
+        print(recievedLatitude)
+        print(realm.objects(Info.self))
+        //let selected = realm.objects(Info.self).filter("(latitude == \(recievedLatitude))AND(longitude == \(recievedLongitude))")
+        let selected = realm.objects(Info.self).filter("latitude == %@ && longitude == %@", recievedLatitude, recievedLongitude)
+        print("selected", selected)
         
-        let selected = realm.objects(Info.self).filter("id == \(recievedNumber)")
+        
         try! realm.write {
             selected.setValue(nameText.text!, forKey: "name")
             selected.setValue(whoText.text!, forKey: "who")
             selected.setValue(commentView.text!, forKey: "comment")
+            
         }
+        
     }
     
     func setImage() {
@@ -94,13 +102,14 @@ class DetailViewController: UIViewController {
     
     @IBAction func goHere(_ sender: Any) {
         //navigationの画面遷移を書く。どこにいくのか、の値が渡される
+        //print(recievedNumber)
         let data = realm.objects(Info.self)[recievedNumber]
+        
         let latitude = data.latitude
         let longitude = data.longitude
-        print(latitude)
         let urlString: String!
         
-        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+        /*if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             urlString = "comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=walking&zoom=14"
             print(urlString!)
         }
@@ -111,7 +120,7 @@ class DetailViewController: UIViewController {
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)
         }
-        
+        */
         
     }
     

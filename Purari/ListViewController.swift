@@ -60,7 +60,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListTableViewCell
         setImage()
         print(data)
-        cell.cityLabel.text = String(data[indexPath.row].genre)
+        cell.nameLabel.text = String(data[indexPath.row].name)
         
         genre = data[indexPath.row].genre
         setImage()

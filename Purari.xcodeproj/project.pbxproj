@@ -22,6 +22,7 @@
 		A130DF4427D501FD0023A4BE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4327D501FD0023A4BE /* ListViewController.swift */; };
 		A130DF4627D505FA0023A4BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4527D505FA0023A4BE /* DetailViewController.swift */; };
 		A145B58827DB2821006741DF /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A145B58727DB2821006741DF /* NaviViewController.swift */; };
+		A17CCD8327E312ED00D7CD0E /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A17CCD8227E312ED00D7CD0E /* splash.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A130DF4327D501FD0023A4BE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A130DF4527D505FA0023A4BE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A145B58727DB2821006741DF /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
+		A17CCD8227E312ED00D7CD0E /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../../../../../Downloads/1x/splash.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				A130DF2627D0AC6D0023A4BE /* ViewController.swift */,
 				A130DF3627D22E230023A4BE /* GenreSelectViewController.swift */,
 				A130DF3F27D501DF0023A4BE /* ListTableViewCell.swift */,
+				A17CCD8227E312ED00D7CD0E /* splash.png */,
 				A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */,
 				A130DF4327D501FD0023A4BE /* ListViewController.swift */,
 				A130DF4527D505FA0023A4BE /* DetailViewController.swift */,
@@ -161,6 +164,7 @@
 				A130DF4227D501E00023A4BE /* ListTableViewCell.xib in Resources */,
 				A130DF2C27D0AC6E0023A4BE /* Assets.xcassets in Resources */,
 				A130DF2A27D0AC6D0023A4BE /* Main.storyboard in Resources */,
+				A17CCD8327E312ED00D7CD0E /* splash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
