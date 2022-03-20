@@ -40,8 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.overrideUserInterfaceStyle = .dark
         
         locationManager.startUpdatingLocation()
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
-        map?.setRegion(cr, animated: true)
+        
         map.isZoomEnabled = true
         
         //navigationの文字の色
@@ -74,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
             self.map.addAnnotation(annotation)
-        } 
+        }
     }
     
     //CLLocationの位置情報を取得するときの関数
@@ -86,18 +85,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             my_latitude = locationManager.location?.coordinate.latitude
             my_longitude = locationManager.location?.coordinate.longitude
             
-            //市町村を取得
-            CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-                guard
-                    let placemark = placemarks?.first, error == nil,
-                    let locality = placemark.locality
-                else {
-                    
-                    return
-                }
-                self.city = locality
-                
-            }
             
             print("現在地緯度経度")
             print(my_latitude!,my_longitude!)
@@ -124,6 +111,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             break// 何もしない
         case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
             manager.startUpdatingLocation()// 現在地の取得を開始
+            let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
+            map?.setRegion(cr, animated: true)
+            //市町村を取得
+            CLGeocoder().reverseGeocodeLocation(locationManager.location!) { placemarks, error in
+                guard
+                    let placemark = placemarks?.first, error == nil,
+                    let locality = placemark.locality
+                else {
+                    
+                    return
+                }
+                self.city = locality
+                
+            }
             break
         default:
             break
