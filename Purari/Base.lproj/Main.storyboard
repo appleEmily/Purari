@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W4P-9k-pB7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W4P-9k-pB7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -264,6 +264,10 @@
                     </view>
                     <navigationItem key="navigationItem" title=" " id="Kws-jq-xPq"/>
                     <connections>
+                        <outlet property="cafeButton" destination="37b-s6-EAb" id="b61-yL-8yf"/>
+                        <outlet property="dinnerButton" destination="m4b-xw-OV4" id="Cu0-kI-gLz"/>
+                        <outlet property="lunchButton" destination="6fT-JJ-hDW" id="zzA-or-wIL"/>
+                        <outlet property="otherButton" destination="mb9-J6-2I1" id="Oqs-XF-U76"/>
                         <outlet property="table" destination="Y0a-NT-4Ri" id="lC4-ov-cP0"/>
                     </connections>
                 </viewController>

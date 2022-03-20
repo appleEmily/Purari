@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
     
     var recievedLatitude: Double = 0.0
     var recievedLongitude: Double = 0.0
-    var recievedNumber: Int = 0
+    var recievedNumber: Int!
     
     let realm = try! Realm()
     
@@ -31,15 +31,29 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let data = realm.objects(Info.self)[recievedNumber]
-        genre = data.genre
-        setImage()
-        cityLabel.text = data.city
-        nameText.text = data.name
-        whoText.text = data.who
-        commentView.text = data.comment
-        genreImage.image = UIImage(named: imageName)
-        
+        //イド受け取る
+        if let recievedNumber = recievedNumber {
+            let data = realm.objects(Info.self)[recievedNumber]
+            genre = data.genre
+            setImage()
+            cityLabel.text = data.city
+            nameText.text = data.name
+            whoText.text = data.who
+            commentView.text = data.comment
+            genreImage.image = UIImage(named: imageName)
+        } else {
+            let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
+            
+            genre = selected?.genre
+            setImage()
+            cityLabel.text = selected?.city
+            nameText.text = selected?.name
+            whoText.text = selected?.who
+            commentView.text = selected?.comment
+            genreImage.image = UIImage(named: imageName)
+            
+            print("selected", selected!)
+        }
         //UI設定
         card.layer.cornerRadius = 10.0
         card.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -63,22 +77,32 @@ class DetailViewController: UIViewController {
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationController?.navigationBar.tintColor = UIColor.clear
+        
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         //info.id = recievedNumber
         //print(info.id)
         print(recievedLatitude)
-        print(realm.objects(Info.self))
-        //let selected = realm.objects(Info.self).filter("(latitude == \(recievedLatitude))AND(longitude == \(recievedLongitude))")
-        let selected = realm.objects(Info.self).filter("latitude == %@ && longitude == %@", recievedLatitude, recievedLongitude)
-        print("selected", selected)
         
-        
-        try! realm.write {
-            selected.setValue(nameText.text!, forKey: "name")
-            selected.setValue(whoText.text!, forKey: "who")
-            selected.setValue(commentView.text!, forKey: "comment")
+        if let recievedNumber = recievedNumber {
+            let data = realm.objects(Info.self)[recievedNumber]
+            try! realm.write {
+                data.setValue(nameText.text!, forKey: "name")
+                data.setValue(whoText.text!, forKey: "who")
+                data.setValue(commentView.text!, forKey: "comment")
+                
+            }
+        } else {
+            let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
+            
+            try! realm.write {
+                selected?.setValue(nameText.text!, forKey: "name")
+                selected?.setValue(whoText.text!, forKey: "who")
+                selected?.setValue(commentView.text!, forKey: "comment")
+                
+            }
             
         }
         
@@ -101,26 +125,37 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func goHere(_ sender: Any) {
+        var goLatitude: Double = 0.0
+        var golongitude: Double = 0.0
         //navigationの画面遷移を書く。どこにいくのか、の値が渡される
         //print(recievedNumber)
+        if let recievedNumber = recievedNumber {
         let data = realm.objects(Info.self)[recievedNumber]
         
-        let latitude = data.latitude
-        let longitude = data.longitude
+        goLatitude = data.latitude
+        golongitude = data.longitude
+        
+        } else {
+            let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
+            goLatitude = (selected?.latitude)!
+            golongitude = (selected?.longitude)!
+            
+        }
         let urlString: String!
         
-        /*if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-            urlString = "comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=walking&zoom=14"
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            urlString = "comgooglemaps://?daddr=\(goLatitude),\(golongitude)&directionsmode=walking&zoom=14"
             print(urlString!)
+            
         }
         else {
-            urlString = "http://maps.apple.com/?daddr=\(latitude),\(longitude)&dirflg=w"
+            urlString = "http://maps.apple.com/?daddr=\(goLatitude),\(golongitude)&dirflg=w"
             print(urlString!)
         }
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)
         }
-        */
+        
         
     }
     

@@ -30,8 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = image
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = image
         
+        
+        
         return true
     }
+    
+    
+    
     
     // MARK: UISceneSession Lifecycle
     
