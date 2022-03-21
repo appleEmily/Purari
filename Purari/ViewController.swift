@@ -79,8 +79,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //CLLocationの位置情報を取得するときの関数
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            //            let cr = MKCoordinateRegion(center: location.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
-            //            map?.setRegion(cr, animated: true)
+            CLGeocoder().reverseGeocodeLocation(locationManager.location!) { placemarks, error in
+                guard
+                    let placemark = placemarks?.first, error == nil,
+                    let locality = placemark.locality
+                else {
+                    return
+                }
+                self.city = locality
+            }
             
             my_latitude = locationManager.location?.coordinate.latitude
             my_longitude = locationManager.location?.coordinate.longitude
@@ -89,6 +96,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             print("現在地緯度経度")
             print(my_latitude!,my_longitude!)
         }
+    }
+    @IBAction func now(_ sender: Any) {
+        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        map?.setRegion(cr, animated: true)
     }
     
     @IBAction func genreOpen(_ sender: Any) {

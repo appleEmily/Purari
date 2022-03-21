@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Foundation
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,7 +23,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var genre: Int!
     var imageName: String!
-    var dataArray: Array<Any>!
     
     var genreFilter: Int!
     
@@ -32,25 +32,19 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var otherBool: Bool = false
     var filterMode: Bool = false
     
-    //配列の足し算にすれば良い？
-    //そうするとジャンルごとに並んじゃうなぁ
-    
     //UINavigationBarに設置するボタン
     var backButtonItem: UIBarButtonItem!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        data = realm.objects(Info.self)
-        
+
         table.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
         //table.separatorColor = .black
         table.backgroundView = nil
-        
         //ダークモード回避
         self.overrideUserInterfaceStyle = .light
         //UI
@@ -60,15 +54,18 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        presentingViewController?.beginAppearanceTransition(true, animated: animated)
-                presentingViewController?.endAppearanceTransition()
+        data = realm.objects(Info.self).sorted(byKeyPath: "id")
+        //presentingViewController?.beginAppearanceTransition(true, animated: animated)
+         //       presentingViewController?.endAppearanceTransition()
+        
+//        lunchBool = false
+//        dinnerBool = false
+//        cafeBool = false
+//        otherBool = false
+//        filterMode = false
         table.reloadData()
-        lunchBool = false
-        dinnerBool = false
-        cafeBool = false
-        otherBool = false
-        filterMode = false
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //ここを、dataにするときと、filterArrayにする時があるってことだ
@@ -84,6 +81,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListTableViewCell
+        
         //print(data)
         //ここで分岐が必要！filterModeを使う。
         if filterMode == false {
@@ -102,9 +100,126 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         //UI
         cell.mainBackground.layer.cornerRadius = 10.0
         cell.mainBackground.layer.masksToBounds = true
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         // cell.backgroundColor = .white
         cell.backgroundColor = UIColor.clear
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //画面遷移。
+        
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+        nextView.filter = filterMode
+        nextView.recievedNumber = indexPath.row
+        nextView.filterGenre = genreFilter
+        self.navigationController?.pushViewController(nextView, animated: true)
+        
+        table.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if filterMode == false {
+                try! realm.write{
+                    realm.delete(data[indexPath.row])
+                }
+            } else {
+                try! realm.write{
+                    realm.delete(filterArray[indexPath.row])
+                }
+                
+            }
+            table.reloadData()
+                
+            
+        }
+        
+    }
+    
+    @IBAction func lunch(_ sender: Any) {
+        
+        if lunchBool == false {
+            genreFilter = 0
+            //filterおん。lunchのみ表示される
+            lunchBool = true
+            dinnerBool = false
+            cafeBool = false
+            otherBool = false
+            filterMode = true
+            filterArray = realm.objects(Info.self).filter("genre == 0")
+            table.reloadData()
+            let image = UIImage(named: "lunch_pink")
+            lunchButton.setBackgroundImage(image, for: .normal)
+            print(filterArray!)
+        } else {
+            lunchBool = false
+            filterMode = false
+            table.reloadData()
+        }
+    }
+    
+    @IBAction func dinner(_ sender: Any) {
+        
+        if dinnerBool == false {
+            genreFilter = 1
+            //filterおん。lunchのみ表示される
+            dinnerBool = true
+            filterMode = true
+            lunchBool = false
+            cafeBool = false
+            otherBool = false
+            filterArray = realm.objects(Info.self).filter("genre == 1")
+            let image = UIImage(named: "dinner_pink")
+            dinnerButton.setBackgroundImage(image, for: .normal)
+            table.reloadData()
+        } else {
+            dinnerBool = false
+            filterMode = false
+            table.reloadData()
+        }
+    }
+    
+    @IBAction func cafe(_ sender: Any) {
+        if cafeBool == false {
+            genreFilter = 2
+            //filterおん。lunchのみ表示される
+            cafeBool = true
+            filterMode = true
+            lunchBool = false
+            dinnerBool = false
+            otherBool = false
+            filterArray = realm.objects(Info.self).filter("genre == 2")
+            table.reloadData()
+        } else {
+            cafeBool = false
+            filterMode = false
+            table.reloadData()
+        }
+    }
+    
+    @IBAction func other(_ sender: Any) {
+       
+        if otherBool == false {
+            genreFilter = 3
+            //filterおん。lunchのみ表示される
+            otherBool = true
+            filterMode = true
+            lunchBool = false
+            dinnerBool = false
+            cafeBool = false
+            filterArray = realm.objects(Info.self).filter("genre == 3")
+            table.reloadData()
+        } else {
+            otherBool = false
+            filterMode = false
+            table.reloadData()
+        }
     }
     
     func setImage() {
@@ -134,110 +249,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //画面遷移。
-        
-        let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
-        self.navigationController?.pushViewController(nextView, animated: true)
-        //ここで変えないと行けなさそう
-        nextView.recievedNumber = indexPath.row
-        
-        table.deselectRow(at: indexPath, animated: true)
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            try! realm.write{
-                realm.delete(data[indexPath.row])
-            }
-            table.reloadData()
-            
-        }
-        
-    }
-    
-    @IBAction func lunch(_ sender: Any) {
-        if lunchBool == false {
-            //filterおん。lunchのみ表示される
-            lunchBool = true
-            dinnerBool = false
-            cafeBool = false
-            otherBool = false
-            filterMode = true
-            filterArray = realm.objects(Info.self).filter("genre == 0")
-            table.reloadData()
-            let image = UIImage(named: "lunch_pink")
-            lunchButton.setBackgroundImage(image, for: .normal)
-            print(filterArray!)
-        } else {
-            lunchBool = false
-            filterMode = false
-            table.reloadData()
-        }
-    }
-    
-    @IBAction func dinner(_ sender: Any) {
-        if dinnerBool == false {
-            //filterおん。lunchのみ表示される
-            dinnerBool = true
-            filterMode = true
-            lunchBool = false
-            cafeBool = false
-            otherBool = false
-            filterArray = realm.objects(Info.self).filter("genre == 1")
-            let image = UIImage(named: "dinner_pink")
-            dinnerButton.setBackgroundImage(image, for: .normal)
-            table.reloadData()
-        } else {
-            dinnerBool = false
-            filterMode = false
-            table.reloadData()
-        }
-    }
-    
-    @IBAction func cafe(_ sender: Any) {
-        if cafeBool == false {
-            //filterおん。lunchのみ表示される
-            cafeBool = true
-            filterMode = true
-            lunchBool = false
-            dinnerBool = false
-            otherBool = false
-            filterArray = realm.objects(Info.self).filter("genre == 2")
-            table.reloadData()
-        } else {
-            cafeBool = false
-            filterMode = false
-            table.reloadData()
-        }
-    }
-    
-    @IBAction func other(_ sender: Any) {
-        if otherBool == false {
-            //filterおん。lunchのみ表示される
-            otherBool = true
-            filterMode = true
-            lunchBool = false
-            dinnerBool = false
-            cafeBool = false
-            filterArray = realm.objects(Info.self).filter("genre == 3")
-            table.reloadData()
-        } else {
-            otherBool = false
-            filterMode = false
-            table.reloadData()
-        }
-    }
-    
-    func filterOn() {
-        //cellの数を指定する
-        
-    }
-    
     
 }
 

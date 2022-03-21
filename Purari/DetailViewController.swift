@@ -19,6 +19,9 @@ class DetailViewController: UIViewController {
     var genre: Int!
     var imageName: String!
     
+    var filter: Bool = false
+    var filterGenre: Int!
+    
     @IBOutlet weak var genreImage: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var nameText: UITextField!
@@ -31,9 +34,36 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(filter)
         //イド受け取る
-        if let recievedNumber = recievedNumber {
-            let data = realm.objects(Info.self)[recievedNumber]
+        if filter == false {
+            if let recievedNumber = recievedNumber {
+                let data = realm.objects(Info.self)[recievedNumber]
+                genre = data.genre
+                setImage()
+                cityLabel.text = data.city
+                nameText.text = data.name
+                whoText.text = data.who
+                commentView.text = data.comment
+                genreImage.image = UIImage(named: imageName)
+            } else {
+                let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
+                
+                genre = selected?.genre
+                setImage()
+                cityLabel.text = selected?.city
+                nameText.text = selected?.name
+                whoText.text = selected?.who
+                commentView.text = selected?.comment
+                genreImage.image = UIImage(named: imageName)
+                
+                print("selected", selected!)
+            }
+        } else {
+            print(filterGenre)
+            print("受け地理", recievedNumber)
+            let data = realm.objects(Info.self).filter("genre == %@", filterGenre!)[recievedNumber]
+            print(data)
             genre = data.genre
             setImage()
             cityLabel.text = data.city
@@ -41,18 +71,6 @@ class DetailViewController: UIViewController {
             whoText.text = data.who
             commentView.text = data.comment
             genreImage.image = UIImage(named: imageName)
-        } else {
-            let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
-            
-            genre = selected?.genre
-            setImage()
-            cityLabel.text = selected?.city
-            nameText.text = selected?.name
-            whoText.text = selected?.who
-            commentView.text = selected?.comment
-            genreImage.image = UIImage(named: imageName)
-            
-            print("selected", selected!)
         }
         //UI設定
         card.layer.cornerRadius = 10.0
@@ -80,32 +98,35 @@ class DetailViewController: UIViewController {
         
         
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        //info.id = recievedNumber
-        //print(info.id)
+    override func viewWillDisappear(_ animated: Bool) {
         print(recievedLatitude)
         
-        if let recievedNumber = recievedNumber {
-            let data = realm.objects(Info.self)[recievedNumber]
+        if filter == false {
+            if let recievedNumber = recievedNumber {
+                let data = realm.objects(Info.self)[recievedNumber]
+                try! realm.write {
+                    data.setValue(nameText.text!, forKey: "name")
+                    data.setValue(whoText.text!, forKey: "who")
+                    data.setValue(commentView.text!, forKey: "comment")
+                }
+            } else {
+                let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
+                
+                try! realm.write {
+                    selected?.setValue(nameText.text!, forKey: "name")
+                    selected?.setValue(whoText.text!, forKey: "who")
+                    selected?.setValue(commentView.text!, forKey: "comment")
+                    
+                }
+            }
+        } else {
+            let data = realm.objects(Info.self).filter("genre == %@", filterGenre!)[recievedNumber]
             try! realm.write {
                 data.setValue(nameText.text!, forKey: "name")
                 data.setValue(whoText.text!, forKey: "who")
                 data.setValue(commentView.text!, forKey: "comment")
-                
             }
-        } else {
-            let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
-            
-            try! realm.write {
-                selected?.setValue(nameText.text!, forKey: "name")
-                selected?.setValue(whoText.text!, forKey: "who")
-                selected?.setValue(commentView.text!, forKey: "comment")
-                
-            }
-            
         }
-        
     }
     
     func setImage() {
@@ -130,11 +151,11 @@ class DetailViewController: UIViewController {
         //navigationの画面遷移を書く。どこにいくのか、の値が渡される
         //print(recievedNumber)
         if let recievedNumber = recievedNumber {
-        let data = realm.objects(Info.self)[recievedNumber]
-        
-        goLatitude = data.latitude
-        golongitude = data.longitude
-        
+            let data = realm.objects(Info.self)[recievedNumber]
+            
+            goLatitude = data.latitude
+            golongitude = data.longitude
+            
         } else {
             let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
             goLatitude = (selected?.latitude)!
