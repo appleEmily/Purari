@@ -43,19 +43,47 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         map.isZoomEnabled = true
         
-        
-        
         //navigationの文字の色
     }
     
     override func viewWillAppear(_ animated: Bool) {
         map?.mapType = .standard
         //ピン立てるよ
-        var savedInfo :[Info] = []
+        firstPin()
+        
+        /*var savedInfo :[Info] = []
         for i in realm.objects(Info.self) {
             savedInfo.append(i)
         }
         print(savedInfo)
+         */
+        //ピンを立てるよ
+        /*savedInfo.forEach { savedInfo in
+            let test = ImageMKPointAnnotation()
+            
+            switch savedInfo.genre {
+            case 0:
+                test.pinImage = "pin_lunch"
+            case 1:
+                test.pinImage = "pin_dinner"
+            case 2:
+                test.pinImage = "pin_cafe"
+            case 3:
+                test.pinImage = "pin_other"
+            default:
+                test.pinImage = "pin_other"
+
+            }
+            test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
+            self.map.addAnnotation(test)
+        }*/
+    }
+    
+    func firstPin() {
+        var savedInfo :[Info] = []
+        for i in realm.objects(Info.self) {
+            savedInfo.append(i)
+        }
         //ピンを立てるよ
         savedInfo.forEach { savedInfo in
             let test = ImageMKPointAnnotation()

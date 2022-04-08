@@ -118,6 +118,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         table.deselectRow(at: indexPath, animated: true)
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        ViewController().firstPin()
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
@@ -136,8 +139,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             }
             table.reloadData()
-                
-            
+//            let view = ViewController.self as! ViewController
         }
         
     }
