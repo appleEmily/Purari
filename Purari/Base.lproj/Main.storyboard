@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W4P-9k-pB7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -285,7 +286,6 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Y0a-NT-4Ri" secondAttribute="bottom" constant="16" id="0t0-wy-9mJ"/>
                             <constraint firstItem="0RC-hF-S9X" firstAttribute="leading" secondItem="B1H-lI-WXg" secondAttribute="leading" constant="32" id="46X-A8-7zR"/>
-                            <constraint firstItem="0RC-hF-S9X" firstAttribute="top" secondItem="B1H-lI-WXg" secondAttribute="top" id="E0x-p0-K5a"/>
                             <constraint firstItem="B1H-lI-WXg" firstAttribute="trailing" secondItem="Y0a-NT-4Ri" secondAttribute="trailing" constant="5" id="HwT-GC-alb"/>
                             <constraint firstItem="0RC-hF-S9X" firstAttribute="top" secondItem="B1H-lI-WXg" secondAttribute="top" id="Ptl-St-E6W"/>
                             <constraint firstItem="B1H-lI-WXg" firstAttribute="trailing" secondItem="0RC-hF-S9X" secondAttribute="trailing" constant="32" id="QPp-DK-47Q"/>

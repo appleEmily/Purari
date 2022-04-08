@@ -56,14 +56,12 @@ class DetailViewController: UIViewController {
                 whoText.text = selected?.who
                 commentView.text = selected?.comment
                 genreImage.image = UIImage(named: imageName)
-                
-                print("selected", selected!)
+
             }
         } else {
-            print(filterGenre)
-            print("受け地理", recievedNumber)
+
             let data = realm.objects(Info.self).filter("genre == %@", filterGenre!)[recievedNumber]
-            print(data)
+
             genre = data.genre
             setImage()
             cityLabel.text = data.city
@@ -99,7 +97,7 @@ class DetailViewController: UIViewController {
         
     }
     override func viewWillDisappear(_ animated: Bool) {
-        print(recievedLatitude)
+
         
         if filter == false {
             if let recievedNumber = recievedNumber {
@@ -149,7 +147,6 @@ class DetailViewController: UIViewController {
         var goLatitude: Double = 0.0
         var golongitude: Double = 0.0
         //navigationの画面遷移を書く。どこにいくのか、の値が渡される
-        //print(recievedNumber)
         if let recievedNumber = recievedNumber {
             let data = realm.objects(Info.self)[recievedNumber]
             
@@ -166,12 +163,12 @@ class DetailViewController: UIViewController {
         
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             urlString = "comgooglemaps://?daddr=\(goLatitude),\(golongitude)&directionsmode=walking&zoom=14"
-            print(urlString!)
+
             
         }
         else {
             urlString = "http://maps.apple.com/?daddr=\(goLatitude),\(golongitude)&dirflg=w"
-            print(urlString!)
+
         }
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)

@@ -23,6 +23,7 @@
 		A130DF4627D505FA0023A4BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4527D505FA0023A4BE /* DetailViewController.swift */; };
 		A145B58827DB2821006741DF /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A145B58727DB2821006741DF /* NaviViewController.swift */; };
 		A17CCD8327E312ED00D7CD0E /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A17CCD8227E312ED00D7CD0E /* splash.png */; };
+		A1FC1B0B27FFFA8C00E7085D /* ImageMKPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC1B0A27FFFA8C00E7085D /* ImageMKPointAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A130DF4527D505FA0023A4BE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A145B58727DB2821006741DF /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
 		A17CCD8227E312ED00D7CD0E /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../../../../../Downloads/1x/splash.png; sourceTree = "<group>"; };
+		A1FC1B0A27FFFA8C00E7085D /* ImageMKPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMKPointAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				A130DF4027D501DF0023A4BE /* ListTableViewCell.xib */,
 				A130DF4327D501FD0023A4BE /* ListViewController.swift */,
 				A130DF4527D505FA0023A4BE /* DetailViewController.swift */,
+				A1FC1B0A27FFFA8C00E7085D /* ImageMKPointAnnotation.swift */,
 			);
 			path = Purari;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				A130DF2727D0AC6D0023A4BE /* ViewController.swift in Sources */,
 				A130DF2327D0AC6D0023A4BE /* AppDelegate.swift in Sources */,
 				A130DF3727D22E240023A4BE /* GenreSelectViewController.swift in Sources */,
+				A1FC1B0B27FFFA8C00E7085D /* ImageMKPointAnnotation.swift in Sources */,
 				A130DF3E27D3245F0023A4BE /* Info.swift in Sources */,
 				A145B58827DB2821006741DF /* NaviViewController.swift in Sources */,
 				A130DF2527D0AC6D0023A4BE /* SceneDelegate.swift in Sources */,
@@ -344,7 +348,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,7 +358,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -377,7 +381,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,7 +391,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

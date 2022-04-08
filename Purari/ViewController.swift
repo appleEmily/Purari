@@ -43,6 +43,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         map.isZoomEnabled = true
         
+        
+        
         //navigationの文字の色
     }
     
@@ -56,23 +58,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         print(savedInfo)
         //ピンを立てるよ
         savedInfo.forEach { savedInfo in
+            let test = ImageMKPointAnnotation()
+            
             switch savedInfo.genre {
-                
             case 0:
-                pinImage = "pin_lunch"
+                test.pinImage = "pin_lunch"
             case 1:
-                pinImage = "pin_dinner"
+                test.pinImage = "pin_dinner"
             case 2:
-                pinImage = "pin_cafe"
+                test.pinImage = "pin_cafe"
             case 3:
-                pinImage = "pin_other"
+                test.pinImage = "pin_other"
             default:
-                print(savedInfo.genre)
+                test.pinImage = "pin_other"
+
             }
-            print(pinImage!)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
-            self.map.addAnnotation(annotation)
+            test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
+            self.map.addAnnotation(test)
         }
     }
     
@@ -92,9 +94,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             my_latitude = locationManager.location?.coordinate.latitude
             my_longitude = locationManager.location?.coordinate.longitude
             
-            
-            print("現在地緯度経度")
-            print(my_latitude!,my_longitude!)
         }
     }
     @IBAction func now(_ sender: Any) {
@@ -150,25 +149,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     //mapをタップ
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation{
-            print("ピンをタップ！")
-            
-            //まずは、同じstororyboard内であることをここで定義します
-            let storyboard: UIStoryboard = self.storyboard!
-            //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
-            let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
-            detailVC.recievedLatitude = annotation.coordinate.latitude
-            
-            detailVC.recievedLongitude = annotation.coordinate.longitude
-            print(detailVC.recievedLatitude)
-            
-            navigationController?.pushViewController(detailVC, animated: true)
+        if let annotation = view.annotation {
+            if annotation is MKUserLocation {
+                
+            } else {
+
+                //まずは、同じstororyboard内であることをここで定義します
+                let storyboard: UIStoryboard = self.storyboard!
+                //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+                let detailVC = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+                detailVC.recievedLatitude = annotation.coordinate.latitude
+                
+                detailVC.recievedLongitude = annotation.coordinate.longitude
+
+                
+                navigationController?.pushViewController(detailVC, animated: true)
+            }
             
         }
     }
     //ピンを立てるメソッド
     //ボタンを押されたら呼ばれる
     func putpin() {
+        pinImageSelect()
         locationManager.startUpdatingLocation()
         let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         map?.setRegion(cr, animated: true)
@@ -206,6 +209,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             info.latitude = my_latitude
             info.longitude = my_longitude
             info.genre = recievedGenre
+            info.city = city
             try! realm.write {
                 realm.add(info)
             }
@@ -216,18 +220,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //ピンにセットする画像を決める
     func pinImageSelect() {
         if let recievedGenre = recievedGenre {
+            let  test = ImageMKPointAnnotation()
             switch recievedGenre {
             case 0:
-                pinImage = "pin_lunch"
+                test.pinImage = "pin_lunch"
             case 1:
-                pinImage = "pin_dinner"
+                test.pinImage = "pin_dinner"
             case 2:
-                pinImage = "pin_cafe"
+                test.pinImage = "pin_cafe"
             case 3:
-                pinImage = "pin_other"
+                test.pinImage = "pin_other"
             default:
                 pinImage = "pin_other"
             }
+            test.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
+            //annotationだった
+            self.map.addAnnotation(test)
         }
     }
     //mapのピンのデザイン
@@ -235,12 +243,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         if annotation is MKUserLocation {
             return nil
-        } else {
-            pinImageSelect()
+        } else if let test = annotation as? ImageMKPointAnnotation {
+            //pinImageSelect()
             let annoView = MKPinAnnotationView()
             annoView.annotation = annotation
-            annoView.image = UIImage(named: pinImage)
+            annoView.image = UIImage(named: test.pinImage)
+
             return annoView
+        } else {
+            return nil
         }
     }
     
