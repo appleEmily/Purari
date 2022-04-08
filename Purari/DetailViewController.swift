@@ -34,7 +34,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(filter)
         //イド受け取る
         if filter == false {
             if let recievedNumber = recievedNumber {
@@ -56,12 +55,12 @@ class DetailViewController: UIViewController {
                 whoText.text = selected?.who
                 commentView.text = selected?.comment
                 genreImage.image = UIImage(named: imageName)
-
+                
             }
         } else {
-
+            
             let data = realm.objects(Info.self).filter("genre == %@", filterGenre!)[recievedNumber]
-
+            
             genre = data.genre
             setImage()
             cityLabel.text = data.city
@@ -94,11 +93,21 @@ class DetailViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationController?.navigationBar.tintColor = UIColor.clear
         
+        //キーボード
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(sender:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(sender:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
         
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
-
-        
         if filter == false {
             if let recievedNumber = recievedNumber {
                 let data = realm.objects(Info.self)[recievedNumber]
@@ -163,22 +172,38 @@ class DetailViewController: UIViewController {
         
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             urlString = "comgooglemaps://?daddr=\(goLatitude),\(golongitude)&directionsmode=walking&zoom=14"
-
+            
             
         }
         else {
             urlString = "http://maps.apple.com/?daddr=\(goLatitude),\(golongitude)&dirflg=w"
-
         }
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)
         }
-        
-        
+    }
+    // キーボードが表示された時
+    @objc private func keyboardWillShow(sender: NSNotification) {
+        if commentView.isFirstResponder {
+            guard let userInfo = sender.userInfo else { return }
+            let duration: Float = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).floatValue
+            UIView.animate(withDuration: TimeInterval(duration), animations: { () -> Void in
+                let transform = CGAffineTransform(translationX: 0, y: -100)
+                self.view.transform = transform
+            })
+        }
+    }
+
+    // キーボードが閉じられた時
+    @objc private func keyboardWillHide(sender: NSNotification) {
+        guard let userInfo = sender.userInfo else { return }
+        let duration: Float = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).floatValue
+        UIView.animate(withDuration: TimeInterval(duration), animations: { () -> Void in
+            self.view.transform = CGAffineTransform.identity
+        })
     }
     
 }
-
 extension UITextField {
     func setUnderLine() {
         // 枠線を非表示にする
@@ -191,5 +216,22 @@ extension UITextField {
         addSubview(underline)
         // 枠線を最前面に
         bringSubviewToFront(underline)
+    }
+}
+extension Notification {
+    
+    // キーボードの高さ
+    var keyboardHeight: CGFloat? {
+        return (self.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+    }
+    
+    // キーボードのアニメーション時間
+    var keybaordAnimationDuration: TimeInterval? {
+        return self.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
+    }
+    
+    // キーボードのアニメーション曲線
+    var keyboardAnimationCurve: UInt? {
+        return self.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
     }
 }

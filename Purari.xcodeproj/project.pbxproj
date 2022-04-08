@@ -335,14 +335,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 743J7J89D4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Purari/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を取得します。OK?";
+				INFOPLIST_KEY_NSLocationUsageDescription = "現在地が地図上に表示されます。また、いきたいところを保存したのち、経路案内に使われます。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "現在地が地図上に表示されます。また、いきたいところを保存したのち、経路案内に使われます。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -353,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = purariApp.emily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -368,14 +366,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 743J7J89D4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Purari/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationUsageDescription = "位置情報を取得します。OK?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を取得します。OK?";
+				INFOPLIST_KEY_NSLocationUsageDescription = "現在地が地図上に表示されます。また、いきたいところを保存したのち、経路案内に使われます。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "現在地が地図上に表示されます。また、いきたいところを保存したのち、経路案内に使われます。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -386,7 +382,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = purariApp.emily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

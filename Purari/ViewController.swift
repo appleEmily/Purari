@@ -33,7 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         map.delegate = self
         
@@ -116,10 +116,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func locationManager(_ manager: CLLocationManager,didChangeAuthorization status: CLAuthorizationStatus) {// 許可を求めるためのdelegateメソッド
         switch status {
         case .notDetermined:// 許可されてない場合
-            manager.requestAlwaysAuthorization()// 許可を求める
+            manager.requestWhenInUseAuthorization()// 許可を求める
         case .restricted, .denied:// 拒否されてる場合
             break// 何もしない
-        case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
+        //case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
+        case .authorizedWhenInUse: // 許可されている場合
             manager.startUpdatingLocation()// 現在地の取得を開始
             let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
             map?.setRegion(cr, animated: true)
