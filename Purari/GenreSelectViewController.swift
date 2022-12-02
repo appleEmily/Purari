@@ -25,7 +25,7 @@ class GenreSelectViewController: UIViewController {
         
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         
-        let info: Info? = read()
+      //  let info: Info? = read()
     }
     
     override func viewDidLoad() {
@@ -62,17 +62,9 @@ class GenreSelectViewController: UIViewController {
         backMapVC()
     }
     
-    //このメソッドおかしい。
-    //多分
-    func saveGenre() {
-        
-     
-    }
-    
-    
     func backMapVC() {
         let preNC = self.presentingViewController as! UINavigationController
-        // let preNC = self.navigationController as! UINavigationController でも可能かと思います
+        // let preNC = self.navigationController as! UINavigationController
         let mapVC = preNC.viewControllers[preNC.viewControllers.count - 1] as! ViewController
         mapVC.recievedGenre = genre
         mapVC.putpin()

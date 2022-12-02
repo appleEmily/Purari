@@ -38,7 +38,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         table.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.delegate = self
         table.dataSource = self
@@ -56,16 +56,17 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         data = realm.objects(Info.self).sorted(byKeyPath: "id")
         //presentingViewController?.beginAppearanceTransition(true, animated: animated)
-         //       presentingViewController?.endAppearanceTransition()
+        //       presentingViewController?.endAppearanceTransition()
         
-//        lunchBool = false
-//        dinnerBool = false
-//        cafeBool = false
-//        otherBool = false
-//        filterMode = false
+        //        lunchBool = false
+        //        dinnerBool = false
+        //        cafeBool = false
+        //        otherBool = false
+        //        filterMode = false
         table.reloadData()
     }
 
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //ここを、dataにするときと、filterArrayにする時があるってことだ
@@ -76,8 +77,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             numberOfCell = filterArray.count
         }
         return numberOfCell
+        
     }
-    
+    //こいつじゃだめ。
+    override func viewDidDisappear(_ animated: Bool) {
+        //ここで、ひとまず全部のピンを消してあげられたらいい。
+        ViewController().firstPin()
+    }
+//
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListTableViewCell
@@ -89,6 +96,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.cityLabel.text = data[indexPath.row].city
             genre = data[indexPath.row].genre
         } else {
+            
             cell.nameLabel.text = String(filterArray[indexPath.row].name)
             cell.cityLabel.text = filterArray[indexPath.row].city
             genre = filterArray[indexPath.row].genre
@@ -103,6 +111,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         // cell.backgroundColor = .white
         cell.backgroundColor = UIColor.clear
+        
         return cell
     }
     
@@ -118,9 +127,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         table.deselectRow(at: indexPath, animated: true)
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        ViewController().firstPin()
-    }
+    
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
@@ -139,7 +147,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             }
             table.reloadData()
-//            let view = ViewController.self as! ViewController
+            print("最新のInfo", realm.objects(Info.self))
+            //            let view = ViewController.self as! ViewController
+        } else {
+            
         }
         
     }
@@ -206,7 +217,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func other(_ sender: Any) {
-       
+        
         if otherBool == false {
             genreFilter = 3
             //filterおん。lunchのみ表示される

@@ -49,43 +49,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewWillAppear(_ animated: Bool) {
         map?.mapType = .standard
         //ピン立てるよ
+        let test = ImageMKPointAnnotation()
+        self.map.removeAnnotation(test)
         firstPin()
         
-        /*var savedInfo :[Info] = []
-        for i in realm.objects(Info.self) {
-            savedInfo.append(i)
-        }
-        print(savedInfo)
-         */
-        //ピンを立てるよ
-        /*savedInfo.forEach { savedInfo in
-            let test = ImageMKPointAnnotation()
-            
-            switch savedInfo.genre {
-            case 0:
-                test.pinImage = "pin_lunch"
-            case 1:
-                test.pinImage = "pin_dinner"
-            case 2:
-                test.pinImage = "pin_cafe"
-            case 3:
-                test.pinImage = "pin_other"
-            default:
-                test.pinImage = "pin_other"
-
-            }
-            test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
-            self.map.addAnnotation(test)
-        }*/
+        
     }
     
     func firstPin() {
+        
+      //  self.map?.removeAnnotation(test)
         var savedInfo :[Info] = []
         for i in realm.objects(Info.self) {
             savedInfo.append(i)
         }
+        print("ピンを立てます", savedInfo)
         //ピンを立てるよ
         savedInfo.forEach { savedInfo in
+            
             let test = ImageMKPointAnnotation()
             
             switch savedInfo.genre {
@@ -99,10 +80,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 test.pinImage = "pin_other"
             default:
                 test.pinImage = "pin_other"
-
+                
             }
             test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
-            self.map.addAnnotation(test)
+
+            self.map?.addAnnotation(test)
         }
     }
     
@@ -147,7 +129,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             manager.requestWhenInUseAuthorization()// 許可を求める
         case .restricted, .denied:// 拒否されてる場合
             break// 何もしない
-        //case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
+            //case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
         case .authorizedWhenInUse: // 許可されている場合
             manager.startUpdatingLocation()// 現在地の取得を開始
             let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
@@ -182,7 +164,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             if annotation is MKUserLocation {
                 
             } else {
-
+                
                 //まずは、同じstororyboard内であることをここで定義します
                 let storyboard: UIStoryboard = self.storyboard!
                 //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
@@ -190,7 +172,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 detailVC.recievedLatitude = annotation.coordinate.latitude
                 
                 detailVC.recievedLongitude = annotation.coordinate.longitude
-
+                
                 
                 navigationController?.pushViewController(detailVC, animated: true)
             }
@@ -201,9 +183,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //ボタンを押されたら呼ばれる
     func putpin() {
         pinImageSelect()
+        /*
         locationManager.startUpdatingLocation()
         let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         map?.setRegion(cr, animated: true)
+         */
         //市町村
         CLGeocoder().reverseGeocodeLocation(locationManager.location!) { placemarks, error in
             guard
@@ -216,9 +200,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         
         //ピンを生成
-        let annotation = MKPointAnnotation()
+        /*
+         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
+        //annotation.coordinate = CLLocationCoordinate2DMake(2345.222222, 8587463)
         self.map.addAnnotation(annotation)
+         */
         //保存処理
         let info = Info()
         if let last = realm.objects(Info.self).sorted(byKeyPath: "id",ascending: true).last {
@@ -277,22 +264,47 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let annoView = MKPinAnnotationView()
             annoView.annotation = annotation
             annoView.image = UIImage(named: test.pinImage)
-
+            
             return annoView
         } else {
             return nil
         }
     }
     
-    
-    
-    
-    
     @IBAction func goList(_ sender: Any) {
+        var savedInfo :[Info] = []
+        for i in realm.objects(Info.self) {
+            savedInfo.append(i)
+        }
+        print("現在地",savedInfo)
+        savedInfo.forEach { savedInfo in
+            let test = ImageMKPointAnnotation()
+            
+            switch savedInfo.genre {
+            case 0:
+                test.pinImage = "pin_lunch"
+            case 1:
+                test.pinImage = "pin_dinner"
+            case 2:
+                test.pinImage = "pin_cafe"
+            case 3:
+                test.pinImage = "pin_other"
+            default:
+                test.pinImage = "pin_other"
+                
+            }
+            
+            test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
+            self.map.removeAnnotation(test)
+        }
+        
         //画面遷移。
-        let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "goList") as! DetailViewController
+        //let storyboard: UIStoryboard = self.storyboard!
+        let nextView = self.storyboard?.instantiateViewController(withIdentifier: "ListVC") as! ListViewController
+       // let nextView = storyboard.instantiateViewController(withIdentifier: "goList") as! DetailViewController
         self.navigationController?.pushViewController(nextView, animated: true)
+    
+        
     }
     
 }
