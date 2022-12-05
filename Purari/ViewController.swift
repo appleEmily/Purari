@@ -43,6 +43,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         map.isZoomEnabled = true
         
+        firstPin()
+        
         //navigationの文字の色
     }
     
@@ -51,13 +53,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //ピン立てるよ
         let test = ImageMKPointAnnotation()
         self.map.removeAnnotation(test)
-        firstPin()
+        
         
         
     }
     
     func firstPin() {
-        
       //  self.map?.removeAnnotation(test)
         var savedInfo :[Info] = []
         for i in realm.objects(Info.self) {
@@ -256,17 +257,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     //mapのピンのデザイン
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         if annotation is MKUserLocation {
             return nil
         } else if let test = annotation as? ImageMKPointAnnotation {
             //pinImageSelect()
             let annoView = MKPinAnnotationView()
-            annoView.annotation = annotation
+            //annoView.annotation = annotation
             annoView.image = UIImage(named: test.pinImage)
             
             return annoView
         } else {
+
             return nil
         }
     }
@@ -277,9 +278,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             savedInfo.append(i)
         }
         print("現在地",savedInfo)
+        
         savedInfo.forEach { savedInfo in
             let test = ImageMKPointAnnotation()
-            
+            /*
             switch savedInfo.genre {
             case 0:
                 test.pinImage = "pin_lunch"
@@ -293,11 +295,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 test.pinImage = "pin_other"
                 
             }
+             */
             
             test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
+            print(test.coordinate)
             self.map.removeAnnotation(test)
         }
-        
         //画面遷移。
         //let storyboard: UIStoryboard = self.storyboard!
         let nextView = self.storyboard?.instantiateViewController(withIdentifier: "ListVC") as! ListViewController

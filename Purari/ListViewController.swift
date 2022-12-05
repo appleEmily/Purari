@@ -80,11 +80,20 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     //こいつじゃだめ。
-    override func viewDidDisappear(_ animated: Bool) {
+   /*
+    override func viewWillDisappear(_ animated: Bool) {
         //ここで、ひとまず全部のピンを消してあげられたらいい。
+        let storyboard: UIStoryboard = self.storyboard!
+        //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+        let mapVC = storyboard.instantiateViewController(withIdentifier: "MapVC")
+        
+        let test = ImageMKPointAnnotation()
+        mapVC.map.removeAnnotation(test)
         ViewController().firstPin()
     }
-//
+    */
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListTableViewCell
