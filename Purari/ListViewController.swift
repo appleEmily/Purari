@@ -8,8 +8,9 @@
 import UIKit
 import RealmSwift
 import Foundation
+import CoreLocation
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet var table: UITableView!
     @IBOutlet weak var lunchButton: UIButton!
@@ -55,17 +56,33 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         data = realm.objects(Info.self).sorted(byKeyPath: "id")
-        //presentingViewController?.beginAppearanceTransition(true, animated: animated)
-        //       presentingViewController?.endAppearanceTransition()
         
-        //        lunchBool = false
-        //        dinnerBool = false
-        //        cafeBool = false
-        //        otherBool = false
-        //        filterMode = false
         table.reloadData()
+        
+        //多分ここ要らない
+        
+        var savedInfo :[Info] = []
+        for i in realm.objects(Info.self) {
+            savedInfo.append(i)
+        }
+        savedInfo.forEach { savedInfo in
+            print(savedInfo, "最新のinfo")
+            
+            let test = ImageMKPointAnnotation()
+            
+            test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
+            
+            //ここで、ひとまず全部のピンを消してあげられたらいい。
+            let storyboard: UIStoryboard = self.storyboard!
+            //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+            let mapVC = storyboard.instantiateViewController(withIdentifier: "MapVC") as! ViewController
+            
+            mapVC.map?.removeAnnotation(test)
+            
+        }
+        
     }
-
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,18 +97,18 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     //こいつじゃだめ。
-   /*
-    override func viewWillDisappear(_ animated: Bool) {
-        //ここで、ひとまず全部のピンを消してあげられたらいい。
-        let storyboard: UIStoryboard = self.storyboard!
-        //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
-        let mapVC = storyboard.instantiateViewController(withIdentifier: "MapVC")
-        
-        let test = ImageMKPointAnnotation()
-        mapVC.map.removeAnnotation(test)
-        ViewController().firstPin()
-    }
-    */
+    /*
+     override func viewWillDisappear(_ animated: Bool) {
+     //ここで、ひとまず全部のピンを消してあげられたらいい。
+     let storyboard: UIStoryboard = self.storyboard!
+     //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
+     let mapVC = storyboard.instantiateViewController(withIdentifier: "MapVC")
+     
+     let test = ImageMKPointAnnotation()
+     mapVC.map.removeAnnotation(test)
+     ViewController().firstPin()
+     }
+     */
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,7 +154,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         table.deselectRow(at: indexPath, animated: true)
     }
     
-
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
@@ -175,11 +192,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             otherBool = false
             filterMode = true
             filterArray = realm.objects(Info.self).filter("genre == 0")
+            lunchButton.setBackgroundImage(UIImage(named: "lunch_pink"), for: .normal)
+            dinnerButton.setBackgroundImage(UIImage(named: "dinner"), for: .normal)
+            cafeButton.setBackgroundImage(UIImage(named: "cafe"), for: .normal)
+            otherButton.setBackgroundImage(UIImage(named: "other"), for: .normal)
             table.reloadData()
-            let image = UIImage(named: "lunch_pink")
-            lunchButton.setBackgroundImage(image, for: .normal)
-            print(filterArray!)
         } else {
+            resetFilterImage()
             lunchBool = false
             filterMode = false
             table.reloadData()
@@ -197,10 +216,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             cafeBool = false
             otherBool = false
             filterArray = realm.objects(Info.self).filter("genre == 1")
-            let image = UIImage(named: "dinner_pink")
-            dinnerButton.setBackgroundImage(image, for: .normal)
+            dinnerButton.setBackgroundImage(UIImage(named: "dinner_pink"), for: .normal)
+            lunchButton.setBackgroundImage(UIImage(named: "lunch"), for: .normal)
+            cafeButton.setBackgroundImage(UIImage(named: "cafe"), for: .normal)
+            otherButton.setBackgroundImage(UIImage(named: "other"), for: .normal)
             table.reloadData()
         } else {
+            resetFilterImage()
             dinnerBool = false
             filterMode = false
             table.reloadData()
@@ -217,8 +239,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             dinnerBool = false
             otherBool = false
             filterArray = realm.objects(Info.self).filter("genre == 2")
+            cafeButton.setBackgroundImage(UIImage(named: "cafe_pink"), for: .normal)
+            lunchButton.setBackgroundImage(UIImage(named: "lunch"), for: .normal)
+            dinnerButton.setBackgroundImage(UIImage(named: "dinner"), for: .normal)
+            otherButton.setBackgroundImage(UIImage(named: "other"), for: .normal)
             table.reloadData()
         } else {
+            resetFilterImage()
             cafeBool = false
             filterMode = false
             table.reloadData()
@@ -236,12 +263,24 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             dinnerBool = false
             cafeBool = false
             filterArray = realm.objects(Info.self).filter("genre == 3")
+            otherButton.setBackgroundImage(UIImage(named: "other_pink"), for: .normal)
+            lunchButton.setBackgroundImage(UIImage(named: "lunch"), for: .normal)
+            dinnerButton.setBackgroundImage(UIImage(named: "dinner"), for: .normal)
+            cafeButton.setBackgroundImage(UIImage(named: "cafe"), for: .normal)
             table.reloadData()
         } else {
+            resetFilterImage()
             otherBool = false
             filterMode = false
             table.reloadData()
         }
+    }
+    
+    func resetFilterImage() {
+        lunchButton.setBackgroundImage(UIImage(named: "lunch"), for: .normal)
+        dinnerButton.setBackgroundImage(UIImage(named: "dinner"), for: .normal)
+        cafeButton.setBackgroundImage(UIImage(named: "cafe"), for: .normal)
+        otherButton.setBackgroundImage(UIImage(named: "other"), for: .normal)
     }
     
     func setImage() {

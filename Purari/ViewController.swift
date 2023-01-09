@@ -50,16 +50,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         map?.mapType = .standard
-        //ピン立てるよ
-        let test = ImageMKPointAnnotation()
-        self.map.removeAnnotation(test)
+        //ピンを消すよ
+        
+        //使えてない。
+        
+        var savedInfo :[Info] = []
+        for i in realm.objects(Info.self) {
+            savedInfo.append(i)
+        }
         
         
-        
+//
+//        if map.annotations != nil {
+//            let annoView = MKAnnotationView()
+//            map.removeAnnotation(annoView.annotation!)
+//        }
+   
     }
     
     func firstPin() {
-      //  self.map?.removeAnnotation(test)
+        //  self.map?.removeAnnotation(test)
         var savedInfo :[Info] = []
         for i in realm.objects(Info.self) {
             savedInfo.append(i)
@@ -84,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 
             }
             test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
-
+            
             self.map?.addAnnotation(test)
         }
     }
@@ -185,9 +195,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func putpin() {
         pinImageSelect()
         /*
-        locationManager.startUpdatingLocation()
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        map?.setRegion(cr, animated: true)
+         locationManager.startUpdatingLocation()
+         let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+         map?.setRegion(cr, animated: true)
          */
         //市町村
         CLGeocoder().reverseGeocodeLocation(locationManager.location!) { placemarks, error in
@@ -203,9 +213,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //ピンを生成
         /*
          let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
-        //annotation.coordinate = CLLocationCoordinate2DMake(2345.222222, 8587463)
-        self.map.addAnnotation(annotation)
+         annotation.coordinate = CLLocationCoordinate2DMake(my_latitude, my_longitude)
+         //annotation.coordinate = CLLocationCoordinate2DMake(2345.222222, 8587463)
+         self.map.addAnnotation(annotation)
          */
         //保存処理
         let info = Info()
@@ -261,13 +271,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             return nil
         } else if let test = annotation as? ImageMKPointAnnotation {
             //pinImageSelect()
+            
             let annoView = MKPinAnnotationView()
+            
             //annoView.annotation = annotation
             annoView.image = UIImage(named: test.pinImage)
             
             return annoView
         } else {
-
+            
             return nil
         }
     }
@@ -282,19 +294,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         savedInfo.forEach { savedInfo in
             let test = ImageMKPointAnnotation()
             /*
-            switch savedInfo.genre {
-            case 0:
-                test.pinImage = "pin_lunch"
-            case 1:
-                test.pinImage = "pin_dinner"
-            case 2:
-                test.pinImage = "pin_cafe"
-            case 3:
-                test.pinImage = "pin_other"
-            default:
-                test.pinImage = "pin_other"
-                
-            }
+             switch savedInfo.genre {
+             case 0:
+             test.pinImage = "pin_lunch"
+             case 1:
+             test.pinImage = "pin_dinner"
+             case 2:
+             test.pinImage = "pin_cafe"
+             case 3:
+             test.pinImage = "pin_other"
+             default:
+             test.pinImage = "pin_other"
+             
+             }
              */
             
             test.coordinate = CLLocationCoordinate2DMake(savedInfo.latitude, savedInfo.longitude)
@@ -304,9 +316,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //画面遷移。
         //let storyboard: UIStoryboard = self.storyboard!
         let nextView = self.storyboard?.instantiateViewController(withIdentifier: "ListVC") as! ListViewController
-       // let nextView = storyboard.instantiateViewController(withIdentifier: "goList") as! DetailViewController
+        // let nextView = storyboard.instantiateViewController(withIdentifier: "goList") as! DetailViewController
         self.navigationController?.pushViewController(nextView, animated: true)
-    
+        
         
     }
     
