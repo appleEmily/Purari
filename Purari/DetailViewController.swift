@@ -105,6 +105,22 @@ class DetailViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
         
+        
+        if let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first {
+            
+        } else {
+            goButton.isHidden = true
+            //削除されたアラート表示
+            let alert = UIAlertController(title: "既に削除されたピンです", message: "ピンは、一度アプリを閉じると消えます", preferredStyle: .alert)
+            //ここから追加
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(ok)
+            //ここまで追加
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -163,9 +179,13 @@ class DetailViewController: UIViewController {
             golongitude = data.longitude
             
         } else {
-            let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
-            goLatitude = (selected?.latitude)!
-            golongitude = (selected?.longitude)!
+            if let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first {
+                print("selected", (selected.latitude))
+                goLatitude = (selected.latitude)
+                golongitude = (selected.longitude)
+            } else {
+                
+            }
             
         }
         let urlString: String!

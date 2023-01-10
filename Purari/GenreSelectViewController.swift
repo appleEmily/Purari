@@ -64,7 +64,6 @@ class GenreSelectViewController: UIViewController {
     
     func backMapVC() {
         let preNC = self.presentingViewController as! UINavigationController
-        // let preNC = self.navigationController as! UINavigationController
         let mapVC = preNC.viewControllers[preNC.viewControllers.count - 1] as! ViewController
         mapVC.recievedGenre = genre
         mapVC.putpin()

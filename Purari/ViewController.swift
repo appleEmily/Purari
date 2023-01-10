@@ -169,7 +169,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         NSLog("Error")
     }
     
-    //mapをタップ
+    //ピンをタップ
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation {
             if annotation is MKUserLocation {
