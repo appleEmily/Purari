@@ -108,7 +108,11 @@ class DetailViewController: UIViewController {
         
         if let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first {
             
+        } else if let recievedNumber = recievedNumber {
+            
+            
         } else {
+            
             goButton.isHidden = true
             //削除されたアラート表示
             let alert = UIAlertController(title: "既に削除されたピンです", message: "ピンは、一度アプリを閉じると消えます", preferredStyle: .alert)
