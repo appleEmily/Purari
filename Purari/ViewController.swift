@@ -63,7 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             savedInfo.append(i)
         }
         
-        
+        //gitテスト
         
         
         //
