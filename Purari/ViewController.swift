@@ -64,6 +64,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         
         
+        
+        
         //
         //        if map.annotations != nil {
         //            let annoView = MKAnnotationView()
