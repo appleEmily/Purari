@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var genreImage: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var DateLabel: UILabel!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var whoText: UITextField!
     @IBOutlet weak var commentView: UITextView!

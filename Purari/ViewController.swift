@@ -33,6 +33,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let info = Info()
+        info.migration()
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         map.delegate = self
@@ -60,12 +64,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         
         
-//
-//        if map.annotations != nil {
-//            let annoView = MKAnnotationView()
-//            map.removeAnnotation(annoView.annotation!)
-//        }
-   
+        //
+        //        if map.annotations != nil {
+        //            let annoView = MKAnnotationView()
+        //            map.removeAnnotation(annoView.annotation!)
+        //        }
+        
     }
     
     func firstPin() {
@@ -118,7 +122,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     @IBAction func now(_ sender: Any) {
-        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        getNowLocation()
+    }
+    
+    func getNowLocation() {
+        let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
         map?.setRegion(cr, animated: true)
     }
     
@@ -140,11 +148,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             manager.requestWhenInUseAuthorization()// 許可を求める
         case .restricted, .denied:// 拒否されてる場合
             break// 何もしない
-            //case .authorizedAlways, .authorizedWhenInUse: // 許可されている場合
+            
         case .authorizedWhenInUse: // 許可されている場合
             manager.startUpdatingLocation()// 現在地の取得を開始
-            let cr = MKCoordinateRegion(center: locationManager.location!.coordinate, latitudinalMeters:  400, longitudinalMeters: 400)
-            map?.setRegion(cr, animated: true)
+            getNowLocation()
             //市町村を取得
             CLGeocoder().reverseGeocodeLocation(locationManager.location!) { placemarks, error in
                 guard
@@ -227,6 +234,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 info.longitude = my_longitude
                 info.genre = recievedGenre
                 info.city = city
+                info.regDate = Date()
+                 info.trial = "ho"
                 realm.add(info)
                 print(realm.objects(Info.self))
                 
@@ -237,6 +246,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             info.longitude = my_longitude
             info.genre = recievedGenre
             info.city = city
+            info.regDate = Date()
+            
             try! realm.write {
                 realm.add(info)
             }
