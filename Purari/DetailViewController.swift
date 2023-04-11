@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
                 whoText.text = data.who
                 commentView.text = data.comment
                 genreImage.image = UIImage(named: imageName)
-                dateLabel.text = data.regDate.toString()
+                dateLabel.text = "登録日:\(data.regDate.toString())"
             } else {
                 let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
                 
@@ -57,7 +57,7 @@ class DetailViewController: UIViewController {
                 whoText.text = selected?.who
                 commentView.text = selected?.comment
                 genreImage.image = UIImage(named: imageName)
-                dateLabel.text = selected?.regDate.toString()
+                dateLabel.text = "登録日:\((selected?.regDate.toString())!)"
                 
             }
         } else {
@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
             whoText.text = data.who
             commentView.text = data.comment
             genreImage.image = UIImage(named: imageName)
-            dateLabel.text = data.regDate.toString()
+            dateLabel.text = "登録日:\(data.regDate.toString())"
         }
         //UI設定
         card.layer.cornerRadius = 10.0
