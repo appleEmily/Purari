@@ -25,20 +25,7 @@ class Info: Object {
     }
     
     //マイグレーション
-    func migration() {
-        let migSchemaVersion: UInt64 = 2
-        
-        let config = Realm.Configuration(
-            schemaVersion: migSchemaVersion,
-            migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < migSchemaVersion) {
-                /*    migration.enumerateObjects(ofType: Info.className()){ _, _ in
-                        
-                    }
-                    */
-                  //  Realm.Configuration.init(deleteRealmIfMigrationNeeded: false)
-                }})
-        Realm.Configuration.defaultConfiguration = config
-    }
+
+
     
 }

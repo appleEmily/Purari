@@ -35,7 +35,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad()
         
         let info = Info()
-        info.migration()
+        
+       // info.migration()
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
