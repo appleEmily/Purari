@@ -421,10 +421,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="WzS-wG-Aw9"/>
                     <connections>
-                        <outlet property="DateLabel" destination="Z79-wr-mVX" id="n5Q-8P-Vye"/>
                         <outlet property="card" destination="Nb9-HR-E4G" id="Azq-tP-NxN"/>
                         <outlet property="cityLabel" destination="XFn-Ej-EEf" id="9qz-0Y-HM1"/>
                         <outlet property="commentView" destination="NNf-S3-pny" id="8uI-gD-xPC"/>
+                        <outlet property="dateLabel" destination="Z79-wr-mVX" id="n5Q-8P-Vye"/>
                         <outlet property="genreImage" destination="3s3-VM-5qF" id="ayV-5u-1XT"/>
                         <outlet property="goButton" destination="4QC-8J-Qhn" id="GLT-Fp-F7U"/>
                         <outlet property="nameText" destination="LsP-fk-cd3" id="juJ-uf-X6L"/>

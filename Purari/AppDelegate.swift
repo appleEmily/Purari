@@ -17,13 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         sleep(2)
         
-        
-        let config = Realm.Configuration(
+        let config = RealmSwift.Realm.Configuration(
             schemaVersion: 1,
-            migrationBlock: nil,
-            deleteRealmIfMigrationNeeded: true)
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 1 {
+                    // `regDate`プロパティの追加
+                    migration.enumerateObjects(ofType: Info.className()) { oldObject, newObject in
+                        let date = Date()
+                        newObject?["regDate"] = date
+                    }
+                    
+                    // `trial`プロパティの追加
+                    migration.enumerateObjects(ofType: Info.className()) { oldObject, newObject in
+                        newObject?["trial"] = ""
+                    }
+                }
+            })
         
         Realm.Configuration.defaultConfiguration = config
+        let realm = try! Realm()
+        
         
         //naviのbackボタン
         let image = UIImage(named: "yajirushi")?.withRenderingMode(.alwaysOriginal)
