@@ -183,6 +183,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation {
             if annotation is MKUserLocation {
+                map.deselectAnnotation(view.annotation, animated: false)
+                return
                 
             } else {
                 
@@ -196,6 +198,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 
                 
                 navigationController?.pushViewController(detailVC, animated: true)
+                
+                return
             }
             
         }
