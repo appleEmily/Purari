@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var genreImage: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var DateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var whoText: UITextField!
     @IBOutlet weak var commentView: UITextView!
@@ -46,6 +46,7 @@ class DetailViewController: UIViewController {
                 whoText.text = data.who
                 commentView.text = data.comment
                 genreImage.image = UIImage(named: imageName)
+                dateLabel.text = data.regDate.toString()
             } else {
                 let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
                 
@@ -56,6 +57,7 @@ class DetailViewController: UIViewController {
                 whoText.text = selected?.who
                 commentView.text = selected?.comment
                 genreImage.image = UIImage(named: imageName)
+                dateLabel.text = selected?.regDate.toString()
                 
             }
         } else {
@@ -69,6 +71,7 @@ class DetailViewController: UIViewController {
             whoText.text = data.who
             commentView.text = data.comment
             genreImage.image = UIImage(named: imageName)
+            dateLabel.text = data.regDate.toString()
         }
         //UI設定
         card.layer.cornerRadius = 10.0
@@ -258,5 +261,12 @@ extension Notification {
     // キーボードのアニメーション曲線
     var keyboardAnimationCurve: UInt? {
         return self.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
+    }
+}
+extension Date {
+    func toString(format: String = "yyyy/MM/dd") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
     }
 }

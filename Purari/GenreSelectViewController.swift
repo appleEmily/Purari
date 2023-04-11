@@ -67,6 +67,8 @@ class GenreSelectViewController: UIViewController {
         let mapVC = preNC.viewControllers[preNC.viewControllers.count - 1] as! ViewController
         mapVC.recievedGenre = genre
         mapVC.putpin()
+        mapVC.getNowLocation()
+        
         //ここでジャンルの番号を渡す。
         
         dismiss(animated: true, completion: nil)

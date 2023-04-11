@@ -367,13 +367,13 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〇〇区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFn-Ej-EEf">
-                                        <rect key="frame" x="192" y="64" width="52" height="20.5"/>
+                                        <rect key="frame" x="180" y="56" width="52" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登録日:2023/12/8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z79-wr-mVX">
-                                        <rect key="frame" x="192" y="96" width="128" height="20"/>
+                                        <rect key="frame" x="180" y="88.5" width="128" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -381,9 +381,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Z79-wr-mVX" firstAttribute="leading" secondItem="3s3-VM-5qF" secondAttribute="trailing" constant="32" id="6q4-EV-dCH"/>
+                                    <constraint firstItem="Z79-wr-mVX" firstAttribute="leading" secondItem="3s3-VM-5qF" secondAttribute="trailing" constant="20" id="6q4-EV-dCH"/>
                                     <constraint firstItem="h3e-zd-9nY" firstAttribute="leading" secondItem="Nb9-HR-E4G" secondAttribute="leading" constant="40" id="7I3-0e-Wb2"/>
-                                    <constraint firstItem="XFn-Ej-EEf" firstAttribute="leading" secondItem="3s3-VM-5qF" secondAttribute="trailing" constant="32" id="9dM-jG-GXf"/>
+                                    <constraint firstItem="XFn-Ej-EEf" firstAttribute="leading" secondItem="3s3-VM-5qF" secondAttribute="trailing" constant="20" id="9dM-jG-GXf"/>
                                     <constraint firstItem="0nn-oR-hOn" firstAttribute="top" secondItem="h3e-zd-9nY" secondAttribute="bottom" constant="18" id="Auf-9D-hhl"/>
                                     <constraint firstAttribute="bottom" secondItem="NNf-S3-pny" secondAttribute="bottom" constant="18" id="G2U-HG-lKw"/>
                                     <constraint firstItem="nfr-5L-FVW" firstAttribute="top" secondItem="LsP-fk-cd3" secondAttribute="bottom" constant="18" id="IQm-hO-DEZ"/>
@@ -399,7 +399,7 @@
                                     <constraint firstItem="NNf-S3-pny" firstAttribute="centerX" secondItem="Nb9-HR-E4G" secondAttribute="centerX" id="hOi-wR-L2A"/>
                                     <constraint firstItem="uHd-vM-Ghz" firstAttribute="top" secondItem="3s3-VM-5qF" secondAttribute="bottom" constant="24" id="j85-yY-peE"/>
                                     <constraint firstItem="Z79-wr-mVX" firstAttribute="top" secondItem="XFn-Ej-EEf" secondAttribute="bottom" constant="12" id="jmh-fU-uET"/>
-                                    <constraint firstItem="XFn-Ej-EEf" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="top" constant="64" id="nM8-NB-jx0"/>
+                                    <constraint firstItem="XFn-Ej-EEf" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="top" constant="56" id="nM8-NB-jx0"/>
                                     <constraint firstItem="3s3-VM-5qF" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="top" constant="20" id="pYy-N7-kXX"/>
                                     <constraint firstItem="LsP-fk-cd3" firstAttribute="leading" secondItem="Nb9-HR-E4G" secondAttribute="leading" constant="40" id="taj-tQ-pCj"/>
                                     <constraint firstItem="uHd-vM-Ghz" firstAttribute="leading" secondItem="Nb9-HR-E4G" secondAttribute="leading" constant="40" id="wX3-mb-E0s"/>
@@ -421,10 +421,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="WzS-wG-Aw9"/>
                     <connections>
-                        <outlet property="DateLabel" destination="Z79-wr-mVX" id="n5Q-8P-Vye"/>
                         <outlet property="card" destination="Nb9-HR-E4G" id="Azq-tP-NxN"/>
                         <outlet property="cityLabel" destination="XFn-Ej-EEf" id="9qz-0Y-HM1"/>
                         <outlet property="commentView" destination="NNf-S3-pny" id="8uI-gD-xPC"/>
+                        <outlet property="dateLabel" destination="Z79-wr-mVX" id="n5Q-8P-Vye"/>
                         <outlet property="genreImage" destination="3s3-VM-5qF" id="ayV-5u-1XT"/>
                         <outlet property="goButton" destination="4QC-8J-Qhn" id="GLT-Fp-F7U"/>
                         <outlet property="nameText" destination="LsP-fk-cd3" id="juJ-uf-X6L"/>
