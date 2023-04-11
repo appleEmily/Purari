@@ -64,7 +64,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             savedInfo.append(i)
         }
         
-        
+        //gitテスト
         
         
         //
@@ -184,7 +184,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if let annotation = view.annotation {
             if annotation is MKUserLocation {
                 map.deselectAnnotation(view.annotation, animated: false)
-                
             } else {
                 
                 //まずは、同じstororyboard内であることをここで定義します
