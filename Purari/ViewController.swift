@@ -182,7 +182,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation {
             if annotation is MKUserLocation {
-                
+                map.deselectAnnotation(view.annotation, animated: false)
             } else {
                 
                 //まずは、同じstororyboard内であることをここで定義します
