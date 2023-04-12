@@ -239,7 +239,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 info.genre = recievedGenre
                 info.city = city
                 info.regDate = Date()
-                 info.trial = "ho"
+                info.likeBool = false
                 realm.add(info)
                 print(realm.objects(Info.self))
                 
@@ -251,6 +251,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             info.genre = recievedGenre
             info.city = city
             info.regDate = Date()
+            info.likeBool = false
             
             try! realm.write {
                 realm.add(info)

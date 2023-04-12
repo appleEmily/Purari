@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -52,15 +53,23 @@
                                     <constraint firstAttribute="height" constant="80" id="Oh3-WI-7KZ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fkv-77-3AP">
+                                <rect key="frame" x="294" y="45.5" width="48" height="36.5"/>
+                                <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart_false" title=""/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Fkv-77-3AP" secondAttribute="bottom" constant="8" id="Dab-4b-Xb3"/>
                             <constraint firstAttribute="width" constant="350" id="IB2-Tp-EVH"/>
                             <constraint firstItem="22e-VG-XMW" firstAttribute="centerY" secondItem="pUW-uz-cBC" secondAttribute="centerY" id="MCc-Uz-L1b"/>
                             <constraint firstItem="x9r-wa-Gdf" firstAttribute="leading" secondItem="pUW-uz-cBC" secondAttribute="leading" constant="12" id="hpS-YG-6V2"/>
                             <constraint firstItem="22e-VG-XMW" firstAttribute="leading" secondItem="x9r-wa-Gdf" secondAttribute="trailing" constant="16" id="pTe-sX-Tpf"/>
                             <constraint firstAttribute="height" constant="90" id="sWk-WC-XZr"/>
                             <constraint firstItem="x9r-wa-Gdf" firstAttribute="centerY" secondItem="pUW-uz-cBC" secondAttribute="centerY" id="wFH-6s-gXm"/>
+                            <constraint firstAttribute="trailing" secondItem="Fkv-77-3AP" secondAttribute="trailing" constant="8" id="wwv-Ft-OLb"/>
                             <constraint firstAttribute="trailing" secondItem="22e-VG-XMW" secondAttribute="trailing" constant="10" id="yb7-Pj-ugB"/>
                         </constraints>
                     </view>
@@ -76,13 +85,15 @@
             <connections>
                 <outlet property="cityLabel" destination="xea-f8-GMe" id="I2L-2y-4pr"/>
                 <outlet property="genreImage" destination="x9r-wa-Gdf" id="MQL-a4-DoC"/>
+                <outlet property="likeButton" destination="Fkv-77-3AP" id="nBy-L2-s2f"/>
                 <outlet property="mainBackground" destination="pUW-uz-cBC" id="iJ6-EX-5kb"/>
                 <outlet property="nameLabel" destination="3RN-pP-XIe" id="kfg-jt-PHz"/>
             </connections>
-            <point key="canvasLocation" x="93" y="90"/>
+            <point key="canvasLocation" x="92.753623188405811" y="89.732142857142847"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart_false" width="24" height="22.5"/>
         <image name="lunch" width="480" height="481"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

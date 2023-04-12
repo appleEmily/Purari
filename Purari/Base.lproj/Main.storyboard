@@ -8,6 +8,11 @@
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Compact.ttf">
+            <string>SFCompact-Black</string>
+        </array>
+    </customFonts>
     <scenes>
         <!-- - -->
         <scene sceneID="tne-QT-ifu">
@@ -166,18 +171,18 @@
                                     <constraint firstAttribute="height" constant="258" id="sU5-5T-Jm5"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Oc-iH-nVw">
-                                <rect key="frame" x="20" y="465" width="231.5" height="84"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Oc-iH-nVw">
+                                <rect key="frame" x="20" y="434" width="235.5" height="115"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dzt-D7-0fV">
-                                        <rect key="frame" x="0.0" y="0.0" width="231.5" height="42"/>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W7" family="Hiragino Sans" pointSize="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="235.5" height="57.5"/>
+                                        <fontDescription key="fontDescription" name="SFCompact-Black" family="SF Compact" pointSize="48"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="of the spot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-jO-3ew">
-                                        <rect key="frame" x="0.0" y="42" width="231.5" height="42"/>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="42"/>
+                                        <rect key="frame" x="0.0" y="57.5" width="235.5" height="57.5"/>
+                                        <fontDescription key="fontDescription" name="SFCompact-Black" family="SF Compact" pointSize="48"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
