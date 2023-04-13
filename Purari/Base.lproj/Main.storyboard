@@ -320,7 +320,7 @@
                                 <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="ここにいく">
-                                    <fontDescription key="titleFontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" name="SFCompact-Black" family="SF Compact" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="goHere:" destination="auE-No-3mE" eventType="touchUpInside" id="efm-ul-1IK"/>
@@ -378,11 +378,31 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登録日:2023/12/8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z79-wr-mVX">
-                                        <rect key="frame" x="180" y="88.5" width="128" height="20"/>
+                                        <rect key="frame" x="180" y="88.5" width="127.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oJi-6E-8cq">
+                                        <rect key="frame" x="287" y="4" width="55" height="47.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU7-Rr-mLV">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="36.5"/>
+                                                <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="heart_false" title=""/>
+                                                <connections>
+                                                    <action selector="hearTapped:" destination="auE-No-3mE" eventType="touchUpInside" id="9rv-MW-Kl3"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY4-nY-Y34">
+                                                <rect key="frame" x="0.0" y="36.5" width="55" height="11"/>
+                                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -393,9 +413,11 @@
                                     <constraint firstAttribute="bottom" secondItem="NNf-S3-pny" secondAttribute="bottom" constant="18" id="G2U-HG-lKw"/>
                                     <constraint firstItem="nfr-5L-FVW" firstAttribute="top" secondItem="LsP-fk-cd3" secondAttribute="bottom" constant="18" id="IQm-hO-DEZ"/>
                                     <constraint firstItem="NNf-S3-pny" firstAttribute="top" secondItem="0nn-oR-hOn" secondAttribute="bottom" constant="12" id="NIN-lx-nri"/>
+                                    <constraint firstItem="oJi-6E-8cq" firstAttribute="top" secondItem="Nb9-HR-E4G" secondAttribute="top" constant="4" id="Oqh-s3-hgn"/>
                                     <constraint firstItem="h3e-zd-9nY" firstAttribute="top" secondItem="nfr-5L-FVW" secondAttribute="bottom" constant="12" id="P9H-Sn-MD4"/>
                                     <constraint firstItem="3s3-VM-5qF" firstAttribute="leading" secondItem="Nb9-HR-E4G" secondAttribute="leading" constant="40" id="Txb-lj-yBd"/>
                                     <constraint firstItem="LsP-fk-cd3" firstAttribute="top" secondItem="uHd-vM-Ghz" secondAttribute="bottom" constant="12" id="ULY-Th-Eh8"/>
+                                    <constraint firstAttribute="trailing" secondItem="oJi-6E-8cq" secondAttribute="trailing" constant="8" id="UYf-3R-meN"/>
                                     <constraint firstItem="NNf-S3-pny" firstAttribute="leading" secondItem="Nb9-HR-E4G" secondAttribute="leading" constant="40" id="VF4-SL-mcz"/>
                                     <constraint firstItem="nfr-5L-FVW" firstAttribute="leading" secondItem="Nb9-HR-E4G" secondAttribute="leading" constant="40" id="Zc7-RM-vAU"/>
                                     <constraint firstAttribute="trailing" secondItem="LsP-fk-cd3" secondAttribute="trailing" constant="48" id="beo-QA-wdN"/>
@@ -432,6 +454,7 @@
                         <outlet property="dateLabel" destination="Z79-wr-mVX" id="n5Q-8P-Vye"/>
                         <outlet property="genreImage" destination="3s3-VM-5qF" id="ayV-5u-1XT"/>
                         <outlet property="goButton" destination="4QC-8J-Qhn" id="GLT-Fp-F7U"/>
+                        <outlet property="likeButton" destination="XU7-Rr-mLV" id="c8W-Ae-xf2"/>
                         <outlet property="nameText" destination="LsP-fk-cd3" id="juJ-uf-X6L"/>
                         <outlet property="whoText" destination="h3e-zd-9nY" id="xf4-TO-Evc"/>
                     </connections>
@@ -445,6 +468,7 @@
         <image name="cafe" width="480" height="481"/>
         <image name="dinner" width="480" height="481"/>
         <image name="genreButton" width="484" height="157"/>
+        <image name="heart_false" width="24" height="22.5"/>
         <image name="location" width="157" height="157"/>
         <image name="lunch" width="480" height="481"/>
         <image name="other" width="481" height="481"/>
