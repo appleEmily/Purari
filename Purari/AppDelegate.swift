@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sleep(2)
         
         let config = RealmSwift.Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < 1 {
                     // `regDate`プロパティの追加
@@ -30,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // `trial`プロパティの追加
                     migration.enumerateObjects(ofType: Info.className()) { oldObject, newObject in
                         newObject?["trial"] = ""
+                    }
+                } else if oldSchemaVersion < 2 {
+                    // `likeBool`プロパティの追加
+                    migration.enumerateObjects(ofType: Info.className()) { oldObject, newObject in
+                        newObject?["likeBool"] = false
                     }
                 }
             })

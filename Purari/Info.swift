@@ -18,7 +18,8 @@ class Info: Object {
     @objc dynamic var who: String = ""
     @objc dynamic var comment: String = ""
     @objc dynamic var regDate: Date = Date()
-    @objc dynamic var trial: String = ""
+    @objc dynamic var likeBool: Bool = false
+    
     
     override static func primaryKey() -> String {
         return "id"

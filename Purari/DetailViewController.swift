@@ -28,14 +28,17 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var whoText: UITextField!
     @IBOutlet weak var commentView: UITextView!
+    @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var card: UIView!
     @IBOutlet weak var goButton: UIButton!
     
+    //お気に入りボタンのためのbool値
+    var likeBool: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //イド受け取る
+        //イド受け取るに
         if filter == false {
             if let recievedNumber = recievedNumber {
                 let data = realm.objects(Info.self)[recievedNumber]
@@ -47,6 +50,13 @@ class DetailViewController: UIViewController {
                 commentView.text = data.comment
                 genreImage.image = UIImage(named: imageName)
                 dateLabel.text = "登録日:\(data.regDate.toString())"
+                if data.likeBool == true {
+                    likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+                    likeBool = true
+                } else {
+                    likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+                    likeBool = false
+                }
             } else {
                 let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
                 
@@ -58,6 +68,13 @@ class DetailViewController: UIViewController {
                 commentView.text = selected?.comment
                 genreImage.image = UIImage(named: imageName)
                 dateLabel.text = "登録日:\((selected?.regDate.toString())!)"
+                if selected?.likeBool == true {
+                    likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+                    likeBool = true
+                } else {
+                    likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+                    likeBool = false
+                }
                 
             }
         } else {
@@ -72,6 +89,13 @@ class DetailViewController: UIViewController {
             commentView.text = data.comment
             genreImage.image = UIImage(named: imageName)
             dateLabel.text = "登録日:\(data.regDate.toString())"
+            if data.likeBool == true {
+                likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+                likeBool = true
+            } else {
+                likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+                likeBool = false
+            }
         }
         //UI設定
         card.layer.cornerRadius = 10.0
@@ -139,6 +163,7 @@ class DetailViewController: UIViewController {
                     data.setValue(nameText.text!, forKey: "name")
                     data.setValue(whoText.text!, forKey: "who")
                     data.setValue(commentView.text!, forKey: "comment")
+                    data.setValue(likeBool, forKey: "likeBool")
                 }
             } else {
                 let selected = realm.objects(Info.self).filter{$0.latitude == self.recievedLatitude && $0.longitude == self.recievedLongitude}.first
@@ -147,6 +172,7 @@ class DetailViewController: UIViewController {
                     selected?.setValue(nameText.text!, forKey: "name")
                     selected?.setValue(whoText.text!, forKey: "who")
                     selected?.setValue(commentView.text!, forKey: "comment")
+                    selected?.setValue(likeBool, forKey: "likeBool")
                     
                 }
             }
@@ -156,6 +182,7 @@ class DetailViewController: UIViewController {
                 data.setValue(nameText.text!, forKey: "name")
                 data.setValue(whoText.text!, forKey: "who")
                 data.setValue(commentView.text!, forKey: "comment")
+                data.setValue(likeBool, forKey: "likeBool")
             }
         }
     }
@@ -230,6 +257,18 @@ class DetailViewController: UIViewController {
             self.view.transform = CGAffineTransform.identity
         })
     }
+    
+    @IBAction func hearTapped(_ sender: Any) {
+        if likeBool == false {
+            likeBool = true
+            likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+        } else {
+            likeBool = false
+            likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+        }
+        
+    }
+    
     
 }
 extension UITextField {

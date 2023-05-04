@@ -22,6 +22,9 @@
 		A130DF4427D501FD0023A4BE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4327D501FD0023A4BE /* ListViewController.swift */; };
 		A130DF4627D505FA0023A4BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130DF4527D505FA0023A4BE /* DetailViewController.swift */; };
 		A145B58827DB2821006741DF /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A145B58727DB2821006741DF /* NaviViewController.swift */; };
+		A1595AC429E6896D00A03665 /* UIFont in Resources */ = {isa = PBXBuildFile; fileRef = A1595AC329E6896D00A03665 /* UIFont */; };
+		A1595AC729E68A1100A03665 /* SF-Compact-Text-Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1595AC529E68A1100A03665 /* SF-Compact-Text-Ultralight.ttf */; };
+		A1595AC829E68A1100A03665 /* SF-Compact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1595AC629E68A1100A03665 /* SF-Compact.ttf */; };
 		A1FC1B0B27FFFA8C00E7085D /* ImageMKPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC1B0A27FFFA8C00E7085D /* ImageMKPointAnnotation.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		A130DF4327D501FD0023A4BE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A130DF4527D505FA0023A4BE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A145B58727DB2821006741DF /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
+		A1595AC329E6896D00A03665 /* UIFont */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIFont; sourceTree = "<group>"; };
+		A1595AC529E68A1100A03665 /* SF-Compact-Text-Ultralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Text-Ultralight.ttf"; path = "Purari/UIFont/SF-Compact-Text-Ultralight.ttf"; sourceTree = "<group>"; };
+		A1595AC629E68A1100A03665 /* SF-Compact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact.ttf"; path = "Purari/UIFont/SF-Compact.ttf"; sourceTree = "<group>"; };
 		A1FC1B0A27FFFA8C00E7085D /* ImageMKPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMKPointAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +66,8 @@
 		A130DF1627D0AC6D0023A4BE = {
 			isa = PBXGroup;
 			children = (
+				A1595AC529E68A1100A03665 /* SF-Compact-Text-Ultralight.ttf */,
+				A1595AC629E68A1100A03665 /* SF-Compact.ttf */,
 				A130DF2127D0AC6D0023A4BE /* Purari */,
 				A130DF2027D0AC6D0023A4BE /* Products */,
 			);
@@ -76,6 +84,7 @@
 		A130DF2127D0AC6D0023A4BE /* Purari */ = {
 			isa = PBXGroup;
 			children = (
+				A1595AC329E6896D00A03665 /* UIFont */,
 				A130DF2227D0AC6D0023A4BE /* AppDelegate.swift */,
 				A130DF2427D0AC6D0023A4BE /* SceneDelegate.swift */,
 				A130DF2827D0AC6D0023A4BE /* Main.storyboard */,
@@ -160,6 +169,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1595AC729E68A1100A03665 /* SF-Compact-Text-Ultralight.ttf in Resources */,
+				A1595AC829E68A1100A03665 /* SF-Compact.ttf in Resources */,
+				A1595AC429E6896D00A03665 /* UIFont in Resources */,
 				A130DF2F27D0AC6E0023A4BE /* LaunchScreen.storyboard in Resources */,
 				A130DF4227D501E00023A4BE /* ListTableViewCell.xib in Resources */,
 				A130DF2C27D0AC6E0023A4BE /* Assets.xcassets in Resources */,

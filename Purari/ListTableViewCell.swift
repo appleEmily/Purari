@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListTableViewCell: UITableViewCell {
     
@@ -16,6 +17,11 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var mainBackground: UIView!
+    
+    @IBOutlet weak var likeButton: UIButton!
+    
+    //Realmを使えるようにする。お気に入り登録のため。
+    let realm = try! Realm()
     
     override func awakeFromNib() {
         super.awakeFromNib()

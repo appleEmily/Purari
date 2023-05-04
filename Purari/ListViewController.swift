@@ -33,6 +33,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var otherBool: Bool = false
     var filterMode: Bool = false
     
+    //お気に入りボタンのためのbool値
+    var likeBool: Bool = false
+    
     //UINavigationBarに設置するボタン
     var backButtonItem: UIBarButtonItem!
     
@@ -115,17 +118,32 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListTableViewCell
         
+        //お気に入りボタンをクリック
+        cell.likeButton.addTarget(self, action: #selector(likeTouped(_:)), for: .touchUpInside)
+        cell.likeButton.tag = indexPath.row
+        
         //print(data)
         //ここで分岐が必要！filterModeを使う。
         if filterMode == false {
             cell.nameLabel.text = String(data[indexPath.row].name)
             cell.cityLabel.text = data[indexPath.row].city
             genre = data[indexPath.row].genre
+            if data[indexPath.row].likeBool == true {
+                cell.likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+            } else {
+                cell.likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+            }
         } else {
             
             cell.nameLabel.text = String(filterArray[indexPath.row].name)
             cell.cityLabel.text = filterArray[indexPath.row].city
             genre = filterArray[indexPath.row].genre
+            
+            if filterArray[indexPath.row].likeBool == true {
+                cell.likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+            } else {
+                cell.likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+            }
             
         }
         setImage()
@@ -138,7 +156,33 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         // cell.backgroundColor = .white
         cell.backgroundColor = UIColor.clear
         
+        
         return cell
+    }
+    
+    //likeボタンを押された時の処理。
+    @objc func likeTouped(_ sender: UIButton) {
+        
+        //likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        print(indexPath.row)
+        let data = realm.objects(Info.self)[indexPath.row]
+        
+        if let cell = table.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? ListTableViewCell {
+            if likeBool == false {
+                likeBool = true
+                cell.likeButton.setImage(UIImage(named: "heart_true"), for: .normal)
+            } else {
+                likeBool = false
+                cell.likeButton.setImage(UIImage(named: "heart_false"), for: .normal)
+            }
+        }
+        
+        
+        try! realm.write {
+            data.setValue(likeBool, forKey: "likeBool")
+        }
+        print(data)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
