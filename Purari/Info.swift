@@ -21,6 +21,8 @@ class Info: Object {
     @objc dynamic var likeBool: Bool = false
     
     
+    
+    
     override static func primaryKey() -> String {
         return "id"
     }
